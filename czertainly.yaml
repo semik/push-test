@@ -57,16 +57,6 @@ kind: Secret
 metadata:
   name: ct-logs-discovery-provider-secret
 ---
-# Source: czertainly/charts/ejbcaNgConnector/templates/ejbca-ng-connector-secret.yaml
-apiVersion: v1
-data:
-  # if the global values are defined, use it, otherwise use local values
-  password: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
-  username: "ZXhhbXBsZV9jemVydGFpbmx5"
-kind: Secret
-metadata:
-  name: ejbca-ng-connector-secret
----
 # Source: czertainly/charts/keycloakInternal/templates/keycloak-internal-secret.yaml
 apiVersion: v1
 data:
@@ -108,7 +98,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "c3ZGdmVnRHlIcmtzQ0E4aXN6V3M="
+  messagingPassword: "TmpSWTFOVThlVmV1RUtBYWRLUVo="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -150,14 +140,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "svFvegDyHrksCA8iszWs"
-  messaging.cookie: "M2qvoXoqdwM7XMTTMyEiccrQSsXsTolv"
+  messaging.password: "NjRY1NU8eVeuEKAadKQZ"
+  messaging.cookie: "uUl5Z3KEOccxJPGHFTnBqpm1UOIZnwXZ"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "svFvegDyHrksCA8iszWs",
+          "password": "NjRY1NU8eVeuEKAadKQZ",
           "tags": [
             "administrator"
           ],
@@ -742,7 +732,7 @@ data:
         "clientId" : "kong",
         "name" : "kong",
         "description" : "",
-        "rootUrl" : "https://semik6.3key.company",
+        "rootUrl" : "https://semik66.3key.company",
         "adminUrl" : "",
         "baseUrl" : "",
         "surrogateAuthRequired" : false,
@@ -2132,7 +2122,7 @@ data:
                   unauth_action: 'deny'
                   realm: CZERTAINLY
                   discovery: >-
-                    https://semik6.3key.company/kc/realms/CZERTAINLY/.well-known/openid-configuration
+                    https://semik66.3key.company/kc/realms/CZERTAINLY/.well-known/openid-configuration
               - name: request-transformer
                 config:
                   remove:
@@ -2169,7 +2159,7 @@ data:
                   client_id: kong
                   realm: CZERTAINLY
                   discovery: >-
-                    https://semik6.3key.company/kc/realms/CZERTAINLY/.well-known/openid-configuration
+                    https://semik66.3key.company/kc/realms/CZERTAINLY/.well-known/openid-configuration
               - name: response-transformer
                 config:
                   add:
@@ -2202,12 +2192,12 @@ data:
                   client_id: kong
                   realm: CZERTAINLY
                   discovery: >-
-                    https://semik6.3key.company/kc/realms/CZERTAINLY/.well-known/openid-configuration
+                    https://semik66.3key.company/kc/realms/CZERTAINLY/.well-known/openid-configuration
                   # null because the default value is '/' and we need to invoke endpoint from discovery, if discovery does not provide it, it should be defined here
                   redirect_after_logout_uri: null
                   redirect_after_logout_with_id_token_hint: 'yes'
                   post_logout_redirect_uri: >-
-                    https://semik6.3key.company/administrator/
+                    https://semik66.3key.company/administrator/
           - name: fe-administrator_route
             strip_path: true
             preserve_host: true
@@ -2464,26 +2454,6 @@ spec:
       protocol: "TCP"
   selector:
     app.kubernetes.io/name: ct-logs-discovery-provider
-    app.kubernetes.io/instance: release-name
----
-# Source: czertainly/charts/ejbcaNgConnector/templates/ejbca-ng-connector-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: ejbca-ng-connector-service
-  labels:
-    helm.sh/chart: ejbcaNgConnector-1.11.0
-    app.kubernetes.io/name: ejbca-ng-connector
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.11.0"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8080
-      protocol: "TCP"
-  selector:
-    app.kubernetes.io/name: ejbca-ng-connector
     app.kubernetes.io/instance: release-name
 ---
 # Source: czertainly/charts/feAdministrator/templates/fe-administrator-service.yaml
@@ -3133,96 +3103,6 @@ spec:
             defaultMode: 420
             secretName: trusted-certificates
 ---
-# Source: czertainly/charts/ejbcaNgConnector/templates/ejbca-ng-connector-deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ejbca-ng-connector-deployment
-  labels:
-    helm.sh/chart: ejbcaNgConnector-1.11.0
-    app.kubernetes.io/name: ejbca-ng-connector
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.11.0"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: ejbca-ng-connector
-      app.kubernetes.io/instance: release-name
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: ejbca-ng-connector
-        app.kubernetes.io/instance: release-name
-      annotations:
-        # when the list of the trusted certificates is changed, restart deployment
-        checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-        checksum/config: fb9ffd398664bea4a6645fea16c562884b6c1d888e3908ad1c39611bf09acb2e
-    spec:      
-      containers:
-        - name: ejbca-ng-connector
-          image: docker.io/czertainly/czertainly-ejbca-ng-connector:1.11.0
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: PORT
-              value: "8080"
-            - name: LOGGING_LEVEL_COM_CZERTAINLY
-              value: "INFO"
-            - name: JDBC_URL
-              value: "jdbc:postgresql://lab09.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
-            - name: JDBC_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: ejbca-ng-connector-secret
-                  key: username
-            - name: JDBC_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: ejbca-ng-connector-secret
-                  key: password
-            - name: TRUSTED_CERTIFICATES
-              valueFrom:
-                secretKeyRef:
-                  name: trusted-certificates
-                  key: ca.crt
-            - name: MAX_PAYLOAD_SIZE
-              value: "2000000"
-            - name: EJBCA_SEARCH_PAGE_SIZE
-              value: "100"
-          ports:
-            - containerPort: 8080
-          securityContext:
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 10001
-          readinessProbe:
-            httpGet:
-              path: /health/readiness
-              port: 8080
-            initialDelaySeconds: 15
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
-          startupProbe:
-            httpGet:
-              path: /health/liveness
-              port: 8080
-            initialDelaySeconds: 15
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 45
-          volumeMounts:
-            - mountPath: /tmp
-              name: ephemeral
-      volumes:
-        - name: ephemeral          
-          emptyDir:
-            medium: "Memory"
-            sizeLimit: "1Mi"
----
 # Source: czertainly/charts/feAdministrator/templates/fe-administrator-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -3649,7 +3529,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: 5124ca9ee0b4799d4cadeecc0cfb27af749609185640d57a0a2be644bcc1a25b
+        checksum/config: f427eeca63df3e2ec1c58fac12f681ddee2c9db4fb21dfedba8c9c3100f99af8
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -3900,7 +3780,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: 3f16995fd84cefb8ad60201f397251a70ddac27c83f02012388556113341cbea
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: ea388faa483a6ff1f0c46851983043c79c5b84ccb8f28605c03096f7c472a980
+        checksum/mq-secret: 862f1bf93090a7a20b2c1c03922a85d95ab0368d15a384a82e38f2ea05017467
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4097,7 +3977,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 5f6c2ab92e83693b01a9169c77e5e77436482ac07e123874f8b6d3740d72e8af
         # when the messaging secret is changed, restart deployment
-        checksum/secret: 0f73c68a9ba1dc0c8e4e23888349352853ebac4e53999b9ea76567cce65bfbf7
+        checksum/secret: a6920fe2d9b62e8dd3684097c9ef2e1f419e555321480fafac392a629a8e0fe8
     spec:      
       securityContext:
         fsGroup: 999
@@ -4273,10 +4153,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - semik6.3key.company
+      - semik66.3key.company
       secretName: czertainly-ingress-tls
   rules:
-    - host: semik6.3key.company
+    - host: semik66.3key.company
       http:
         paths:
           - path: /
@@ -4457,30 +4337,6 @@ spec:
         - -c
         - |
           curl --silent --retry 5 --retry-delay 5 --retry-all-errors ct-logs-discovery-provider-service:8080/v1
-  restartPolicy: Never
----
-# Source: czertainly/charts/ejbcaNgConnector/templates/tests/test-connection.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: "release-name-ejbca-ng-connector-test-connection"
-  labels:
-    helm.sh/chart: ejbcaNgConnector-1.11.0
-    app.kubernetes.io/name: ejbca-ng-connector
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.11.0"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
-    "helm.sh/hook": test
-spec:
-  containers:
-    - name: curl
-      image: curlimages/curl:8.1.1
-      command:
-        - /bin/sh
-        - -c
-        - |
-          curl --silent --retry 5 --retry-delay 5 --retry-all-errors ejbca-ng-connector-service:8080/v1
   restartPolicy: Never
 ---
 # Source: czertainly/charts/feAdministrator/templates/tests/test-connection.yaml
@@ -4744,7 +4600,7 @@ spec:
             echo "Getting IP address of keycloak-internal-service..." &&
             INTERNAL_IP=$(kubectl get service keycloak-internal-service -o jsonpath='{.spec.clusterIP}') &&
             echo "IP address of keycloak-internal-service is $INTERNAL_IP" &&
-            HOSTNAME=semik6.3key.company &&
+            HOSTNAME=semik66.3key.company &&
             echo "Adding '$INTERNAL_IP' to /etc/hosts as '$HOSTNAME'..." &&
             kubectl patch deployment api-gateway-deployment -p='{"spec":{"template":{"spec":{"hostAliases":[{"ip": "'$INTERNAL_IP'", "hostnames":["'$HOSTNAME'"]}]}}}}' &&
             echo "Done"
@@ -4796,9 +4652,6 @@ spec:
             while ! nc -z core-service 8080; do sleep 1; done &&
             curl -X POST -k -H 'content-type: application/json' \
             -d '{"name": "Common-Credential-Connector","url": "http://common-credential-provider-service:8080","authType": "none"}' \
-            http://core-service:8080/api/v1/connector/register &&
-            curl -X POST -k -H 'content-type: application/json' \
-            -d '{"name": "EJBCA-NG-Connector","url": "http://ejbca-ng-connector-service:8080","authType": "none"}' \
             http://core-service:8080/api/v1/connector/register &&
             curl -X POST -k -H 'content-type: application/json' \
             -d '{"name": "X509-Compliance-Provider","url": "http://x509-compliance-provider-service:8080","authType": "none"}' \
