@@ -98,7 +98,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "TmpSWTFOVThlVmV1RUtBYWRLUVo="
+  messagingPassword: "MVd5bHE0OWpBWkdjY1JpNUFGNGo="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -140,14 +140,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "NjRY1NU8eVeuEKAadKQZ"
-  messaging.cookie: "uUl5Z3KEOccxJPGHFTnBqpm1UOIZnwXZ"
+  messaging.password: "1Wylq49jAZGccRi5AF4j"
+  messaging.cookie: "tpzzcbl8LKYubYsk2iQOFFyzO8Vfdcf9"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "NjRY1NU8eVeuEKAadKQZ",
+          "password": "1Wylq49jAZGccRi5AF4j",
           "tags": [
             "administrator"
           ],
@@ -3529,7 +3529,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: f427eeca63df3e2ec1c58fac12f681ddee2c9db4fb21dfedba8c9c3100f99af8
+        checksum/config: f2d594fd7c9929db46ef48a0617cbb76502826d390069499e51c2b2b4293410b
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -3780,7 +3780,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: 3f16995fd84cefb8ad60201f397251a70ddac27c83f02012388556113341cbea
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 862f1bf93090a7a20b2c1c03922a85d95ab0368d15a384a82e38f2ea05017467
+        checksum/mq-secret: f04cd91465c59ce30bc7840e1e6fc66da808bd8cc4b096d2c83119aac7d546b8
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -3977,7 +3977,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 5f6c2ab92e83693b01a9169c77e5e77436482ac07e123874f8b6d3740d72e8af
         # when the messaging secret is changed, restart deployment
-        checksum/secret: a6920fe2d9b62e8dd3684097c9ef2e1f419e555321480fafac392a629a8e0fe8
+        checksum/secret: acad8c08ce70dc63faed721dc9cf7be72f54ec8aabf55dcb6404687d5c28b15d
     spec:      
       securityContext:
         fsGroup: 999
@@ -4596,13 +4596,16 @@ spec:
           - /bin/sh
           - -c
           - |
-            echo "Resolve internal keycloak hostname enabled:" &&
-            echo "Getting IP address of keycloak-internal-service..." &&
-            INTERNAL_IP=$(kubectl get service keycloak-internal-service -o jsonpath='{.spec.clusterIP}') &&
-            echo "IP address of keycloak-internal-service is $INTERNAL_IP" &&
-            HOSTNAME=semik66.3key.company &&
-            echo "Adding '$INTERNAL_IP' to /etc/hosts as '$HOSTNAME'..." &&
-            kubectl patch deployment api-gateway-deployment -p='{"spec":{"template":{"spec":{"hostAliases":[{"ip": "'$INTERNAL_IP'", "hostnames":["'$HOSTNAME'"]}]}}}}' &&
+            echo "Resolve internal keycloak hostname disabled:" &&
+            echo "Check if hostAliases object is present in deployment..." &&
+            HOST_ALIASES=$(kubectl get deployment api-gateway-deployment -o jsonpath='{.spec.template.spec.hostAliases}') &&
+            echo "Check if hostAliases object is empty..." &&
+            if [ -z "$HOST_ALIASES" ]; then
+              echo "hostAliases is empty, nothing to do"
+            else
+              echo "hostAliases present with value '$HOST_ALIASES', removing it..." &&
+              kubectl patch deployment api-gateway-deployment --type json -p='[{"op": "remove", "path": "/spec/template/spec/hostAliases"}]'
+            fi &&
             echo "Done"
           volumeMounts:
             - mountPath: /tmp
