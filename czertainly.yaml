@@ -98,7 +98,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "MVd5bHE0OWpBWkdjY1JpNUFGNGo="
+  messagingPassword: "akw5V3BjdThibjBpaExLRG1yRkY="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -140,14 +140,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "1Wylq49jAZGccRi5AF4j"
-  messaging.cookie: "tpzzcbl8LKYubYsk2iQOFFyzO8Vfdcf9"
+  messaging.password: "jL9Wpcu8bn0ihLKDmrFF"
+  messaging.cookie: "4TGR4nmrcS1t755ew9c9DsWzGTUYpO7a"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "1Wylq49jAZGccRi5AF4j",
+          "password": "jL9Wpcu8bn0ihLKDmrFF",
           "tags": [
             "administrator"
           ],
@@ -3529,7 +3529,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: f2d594fd7c9929db46ef48a0617cbb76502826d390069499e51c2b2b4293410b
+        checksum/config: d3a41a368f2d895bf04a2200ac9fe4ce3c034a18984cfccf78cb99267210d88f
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -3780,7 +3780,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: 3f16995fd84cefb8ad60201f397251a70ddac27c83f02012388556113341cbea
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: f04cd91465c59ce30bc7840e1e6fc66da808bd8cc4b096d2c83119aac7d546b8
+        checksum/mq-secret: 22970e07aa9875ca647779151b5e6b11b3bb342f8564ef139620f16ab12091b4
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -3977,7 +3977,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 5f6c2ab92e83693b01a9169c77e5e77436482ac07e123874f8b6d3740d72e8af
         # when the messaging secret is changed, restart deployment
-        checksum/secret: acad8c08ce70dc63faed721dc9cf7be72f54ec8aabf55dcb6404687d5c28b15d
+        checksum/secret: cbc696927f731fa8c85093ab879fc7dad31efa477a3ea9c2a6c45942dc53b654
     spec:      
       securityContext:
         fsGroup: 999
@@ -4145,11 +4145,12 @@ metadata:
     cert-manager.io/issuer: ca-issuer
     cert-manager.io/issuer-kind: Issuer
     nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
-    nginx.ingress.kubernetes.io/auth-tls-secret: czertainly/trusted-certificates
+    nginx.ingress.kubernetes.io/auth-tls-secret: czertainly-example/trusted-certificates
     nginx.ingress.kubernetes.io/auth-tls-verify-client: optional
     nginx.ingress.kubernetes.io/auth-tls-verify-depth: "3"
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
     nginx.ingress.kubernetes.io/proxy-buffer-size: 256k
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   tls:
     - hosts:
@@ -4167,28 +4168,6 @@ spec:
                 port:
                   number: 8000
 ---
-# Source: czertainly/templates/ingress/ca-certificate.yaml
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: ca-certificate
-  labels:
-    helm.sh/chart: czertainly-2.13.1
-    app.kubernetes.io/name: czertainly
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.13.1"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  isCA: true
-  commonName: ca
-  secretName: ca-keypair
-  privateKey:
-    algorithm: RSA
-    size: 4096
-  issuerRef:
-    name: selfsigned-issuer
-    kind: Issuer
----
 # Source: czertainly/templates/ingress/ca-issuer.yaml
 apiVersion: cert-manager.io/v1
 kind: Issuer
@@ -4201,23 +4180,15 @@ metadata:
     app.kubernetes.io/version: "2.13.1"
     app.kubernetes.io/managed-by: Helm
 spec:
-  ca:
-    secretName: ca-keypair
----
-# Source: czertainly/templates/selfsigned-issuer.yaml
-apiVersion: cert-manager.io/v1
-apiVersion: cert-manager.io/v1
-kind: Issuer
-metadata:
-  name: selfsigned-issuer
-  labels:
-    helm.sh/chart: czertainly-2.13.1
-    app.kubernetes.io/name: czertainly
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.13.1"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  selfSigned: {}
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: info@3key.company
+    privateKeySecretRef:
+      name: letsencrypt-production
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
 ---
 # Source: czertainly/charts/apiGateway/templates/tests/test-connection.yaml
 apiVersion: v1
