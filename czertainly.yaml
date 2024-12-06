@@ -44,16 +44,6 @@ kind: Secret
 metadata:
   name: auth-secret
 ---
-# Source: czertainly/charts/cryptosenseDiscoveryProvider/templates/cryptosense-discovery-provider-secret.yaml
-apiVersion: v1
-data:
-  # if the global values are defined, use it, otherwise use local values
-  password: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
-  username: "ZXhhbXBsZV9jemVydGFpbmx5"
-kind: Secret
-metadata:
-  name: cryptosense-discovery-provider-secret
----
 # Source: czertainly/charts/ctLogsDiscoveryProvider/templates/hashicorp-vault-connector-secret.yaml
 apiVersion: v1
 data:
@@ -112,26 +102,13 @@ kind: Secret
 metadata:
   name: network-discovery-provider-secret
 ---
-# Source: czertainly/charts/pyAdcsConnector/templates/pyadcs-connector-secret.yaml
-apiVersion: v1
-data:
-  # if the global values are defined, use it, otherwise use local values
-  database_host: "bGFiMDkuM2tleS5jb21wYW55"
-  database_port: "NTQzMg=="
-  database_name: "ZXhhbXBsZV9jemVydGFpbmx5"
-  database_user: "ZXhhbXBsZV9jemVydGFpbmx5"
-  database_password: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
-kind: Secret
-metadata:
-  name: pyadcs-connector-secret
----
 # Source: czertainly/charts/schedulerService/templates/scheduler-service-secret.yaml
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "QVh3ZjN3WENtZERtWDNLTktweUg="
+  messagingPassword: "VkE0Zk1YSDdTNkxWYURFZHBXNWk="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -173,14 +150,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "AXwf3wXCmdDmX3KNKpyH"
-  messaging.cookie: "0SDF3a3rbRaIvjqJhwHRfIPC5P6b6zkl"
+  messaging.password: "VA4fMXH7S6LVaDEdpW5i"
+  messaging.cookie: "qtgs5BIr9iqF1ExkyZEFWTz2FMnms6l4"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "AXwf3wXCmdDmX3KNKpyH",
+          "password": "VA4fMXH7S6LVaDEdpW5i",
           "tags": [
             "administrator"
           ],
@@ -2469,26 +2446,6 @@ spec:
     app.kubernetes.io/name: common-credential-provider
     app.kubernetes.io/instance: release-name
 ---
-# Source: czertainly/charts/cryptosenseDiscoveryProvider/templates/cryptosense-discovery-provider-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: cryptosense-discovery-provider-service
-  labels:
-    helm.sh/chart: cryptosenseDiscoveryProvider-1.4.0-2
-    app.kubernetes.io/name: cryptosense-discovery-provider
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.4.0"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8080
-      protocol: "TCP"
-  selector:
-    app.kubernetes.io/name: cryptosense-discovery-provider
-    app.kubernetes.io/instance: release-name
----
 # Source: czertainly/charts/ctLogsDiscoveryProvider/templates/hashicorp-vault-connector-service.yaml
 apiVersion: v1
 kind: Service
@@ -2690,26 +2647,6 @@ spec:
       protocol: "TCP"
   selector:
     app.kubernetes.io/name: network-discovery-provider
-    app.kubernetes.io/instance: release-name
----
-# Source: czertainly/charts/pyAdcsConnector/templates/pyadcs-connector-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: pyadcs-connector-service
-  labels:
-    helm.sh/chart: pyAdcsConnector-1.1.2-1
-    app.kubernetes.io/name: pyadcs-connector
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.1.2"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8080
-      protocol: "TCP"
-  selector:
-    app.kubernetes.io/name: pyadcs-connector
     app.kubernetes.io/instance: release-name
 ---
 # Source: czertainly/charts/schedulerService/templates/scheduler-service-service.yaml
@@ -3069,83 +3006,6 @@ spec:
               value: "INFO"
             - name: JAVA_OPTS
               value: ""
-          ports:
-            - containerPort: 8080
-          securityContext:
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 10001
-          readinessProbe:
-            httpGet:
-              path: /health/readiness
-              port: 8080
-            initialDelaySeconds: 15
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
-          startupProbe:
-            httpGet:
-              path: /health/liveness
-              port: 8080
-            initialDelaySeconds: 15
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 45
-          volumeMounts:
-            - mountPath: /tmp
-              name: ephemeral
-      volumes:
-        - name: ephemeral          
-          emptyDir:
-            medium: "Memory"
-            sizeLimit: "1Mi"
----
-# Source: czertainly/charts/cryptosenseDiscoveryProvider/templates/cryptosense-discovery-provider-deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: cryptosense-discovery-provider-deployment
-  labels:
-    helm.sh/chart: cryptosenseDiscoveryProvider-1.4.0-2
-    app.kubernetes.io/name: cryptosense-discovery-provider
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.4.0"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: cryptosense-discovery-provider
-      app.kubernetes.io/instance: release-name
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: cryptosense-discovery-provider
-        app.kubernetes.io/instance: release-name
-    spec:      
-      containers:
-        - name: cryptosense-discovery-provider
-          image: harbor.3key.company/czertainly/czertainly-cryptosense-discovery-provider:1.4.0
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: PORT
-              value: "8080"
-            - name: LOGGING_LEVEL_COM_CZERTAINLY
-              value: "INFO"
-            - name: JDBC_URL
-              value: "jdbc:postgresql://lab09.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
-            - name: JDBC_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: cryptosense-discovery-provider-secret
-                  key: username
-            - name: JDBC_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: cryptosense-discovery-provider-secret
-                  key: password
           ports:
             - containerPort: 8080
           securityContext:
@@ -3766,110 +3626,6 @@ spec:
             medium: "Memory"
             sizeLimit: "1Mi"
 ---
-# Source: czertainly/charts/pyAdcsConnector/templates/pyadcs-connector-deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: pyadcs-connector-deployment
-  labels:
-    helm.sh/chart: pyAdcsConnector-1.1.2-1
-    app.kubernetes.io/name: pyadcs-connector
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.1.2"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: pyadcs-connector
-      app.kubernetes.io/instance: release-name
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: pyadcs-connector
-        app.kubernetes.io/instance: release-name
-      annotations:
-        # when the list of the trusted certificates is changed, restart deployment
-        checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-        checksum/config: fb9ffd398664bea4a6645fea16c562884b6c1d888e3908ad1c39611bf09acb2e
-    spec:      
-      containers:
-        - name: pyadcs-connector
-          image: harbor.3key.company/czertainly/czertainly-pyadcs-connector:1.1.2
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: DATABASE_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_host
-            - name: DATABASE_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_port
-            - name: DATABASE_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_name
-            - name: DATABASE_SCHEMA
-              value: "pyadcs"
-            - name: DATABASE_USER
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_user
-            - name: DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_password
-            - name: LOG_LEVEL
-              value: "INFO"
-            - name: REQUESTS_CA_BUNDLE
-              value: /etc/ssl/certs/pyadcs-trusted-cas.crt
-          ports:
-            - containerPort: 8080
-          securityContext:
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 10001
-          readinessProbe:
-            httpGet:
-              path: /v1
-              port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
-          startupProbe:
-            httpGet:
-              path: /v1
-              port: 8080
-            initialDelaySeconds: 10
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 10
-          volumeMounts:
-            - mountPath: /tmp
-              name: ephemeral
-            - name: trusted-certificates-volume
-              mountPath: /etc/ssl/certs/pyadcs-trusted-cas.crt
-              readOnly: true
-              subPath: ca.crt
-      volumes:
-        - name: ephemeral          
-          emptyDir:
-            medium: "Memory"
-            sizeLimit: "1Mi"
-        - name: trusted-certificates-volume
-          secret:
-            defaultMode: 420
-            secretName: trusted-certificates
----
 # Source: czertainly/charts/schedulerService/templates/scheduler-service-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -3893,7 +3649,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: 42939b1e5877937d3f4f76fa5b944c8aa455794fe1deefa4f207091a9e6fbf5f
+        checksum/config: d27ee67f1af35e7a54222a064d05de8f0efd99855c45e0f22660d1c2005f30fb
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4144,7 +3900,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: 3f16995fd84cefb8ad60201f397251a70ddac27c83f02012388556113341cbea
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 645c52a735d3bf3e814bd079224d3a1552606cb6406a73bb0bb50c437d0c8a2c
+        checksum/mq-secret: d1abc056674655e9b587a3a186718d62646ca4c772dd428625b2fe373ba1a17f
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4341,7 +4097,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 5f6c2ab92e83693b01a9169c77e5e77436482ac07e123874f8b6d3740d72e8af
         # when the messaging secret is changed, restart deployment
-        checksum/secret: 9a08aec32beab234a5625c6f1fc9154680cc007a97698932175c0c3e7db94ad2
+        checksum/secret: 4ba15a1c4115256975494f35f5b3e0b54f1bd2f8cbc87805b25771db5f0cf7b0
     spec:      
       securityContext:
         fsGroup: 999
@@ -4679,30 +4435,6 @@ spec:
           curl --silent --retry 5 --retry-delay 5 --retry-all-errors common-credential-provider-service:8080/v1
   restartPolicy: Never
 ---
-# Source: czertainly/charts/cryptosenseDiscoveryProvider/templates/tests/test-connection.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: "release-name-cryptosense-discovery-provider-test-connection"
-  labels:
-    helm.sh/chart: cryptosenseDiscoveryProvider-1.4.0-2
-    app.kubernetes.io/name: cryptosense-discovery-provider
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.4.0"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
-    "helm.sh/hook": test
-spec:
-  containers:
-    - name: curl
-      image: curlimages/curl:8.1.1
-      command:
-        - /bin/sh
-        - -c
-        - |
-          curl --silent --retry 5 --retry-delay 5 --retry-all-errors cryptosense-discovery-provider-service:8080/v1
-  restartPolicy: Never
----
 # Source: czertainly/charts/ctLogsDiscoveryProvider/templates/tests/test-connection.yaml
 apiVersion: v1
 kind: Pod
@@ -4869,30 +4601,6 @@ spec:
         - -c
         - |
           curl --silent --retry 5 --retry-delay 5 --retry-all-errors network-discovery-provider-service:8080/v1
-  restartPolicy: Never
----
-# Source: czertainly/charts/pyAdcsConnector/templates/tests/test-connection.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: "release-name-pyadcs-connector-test-connection"
-  labels:
-    helm.sh/chart: pyAdcsConnector-1.1.2-1
-    app.kubernetes.io/name: pyadcs-connector
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.1.2"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
-    "helm.sh/hook": test
-spec:
-  containers:
-    - name: curl
-      image: curlimages/curl:8.1.1
-      command:
-        - /bin/sh
-        - -c
-        - |
-          curl --silent --retry 5 --retry-delay 5 --retry-all-errors pyadcs-connector-service:8080/v1
   restartPolicy: Never
 ---
 # Source: czertainly/charts/schedulerService/templates/tests/test-connection.yaml
@@ -5093,9 +4801,6 @@ spec:
             -d '{"name": "EJBCA-NG-Connector","url": "http://ejbca-ng-connector-service:8080","authType": "none"}' \
             http://core-service:8080/api/v1/connector/register &&
             curl -X POST -k -H 'content-type: application/json' \
-            -d '{"name": "Cryptosense-Discovery-Provider","url": "http://cryptosense-discovery-provider-service:8080","authType": "none"}' \
-            http://core-service:8080/api/v1/connector/register &&
-            curl -X POST -k -H 'content-type: application/json' \
             -d '{"name": "X509-Compliance-Provider","url": "http://x509-compliance-provider-service:8080","authType": "none"}' \
             http://core-service:8080/api/v1/connector/register &&
             curl -X POST -k -H 'content-type: application/json' \
@@ -5106,9 +4811,6 @@ spec:
             http://core-service:8080/api/v1/connector/register &&
             curl -X POST -k -H 'content-type: application/json' \
             -d '{"name": "Software-Cryptography-Provider","url": "http://software-cryptography-provider-service:8080","authType": "none"}' \
-            http://core-service:8080/api/v1/connector/register &&
-            curl -X POST -k -H 'content-type: application/json' \
-            -d '{"name": "PyADCS-Connector","url": "http://pyadcs-connector-service:8080","authType": "none"}' \
             http://core-service:8080/api/v1/connector/register &&
             curl -X POST -k -H 'content-type: application/json' \
             -d '{"name": "CT-Logs-Discovery-Provider","url": "http://ct-logs-discovery-provider-service:8080","authType": "none"}' \
