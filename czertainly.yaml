@@ -39,7 +39,7 @@ metadata:
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
-  connection-string: SG9zdD1sYWIwNy4za2V5LmNvbXBhbnk7UG9ydD01NDMyO1VzZXJuYW1lPWV4YW1wbGVfY3plcnRhaW5seTtQYXNzd29yZD1iZXppbGlza2FrdGFib3J1MDYxMjIwMjQ7RGF0YWJhc2U9ZXhhbXBsZV9jemVydGFpbmx5O1Bvb2xpbmc9dHJ1ZQ==
+  connection-string: SG9zdD1sYWIwNi4za2V5LmNvbXBhbnk7UG9ydD01NDMyO1VzZXJuYW1lPWV4YW1wbGVfY3plcnRhaW5seTtQYXNzd29yZD1iZXppbGlza2FrdGFib3J1MDYxMjIwMjQ7RGF0YWJhc2U9ZXhhbXBsZV9jemVydGFpbmx5O1Bvb2xpbmc9dHJ1ZQ==
 kind: Secret
 metadata:
   name: auth-secret
@@ -58,7 +58,7 @@ metadata:
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
-  database_host: "bGFiMDcuM2tleS5jb21wYW55"
+  database_host: "bGFiMDYuM2tleS5jb21wYW55"
   database_port: "NTQzMg=="
   database_name: "ZXhhbXBsZV9jemVydGFpbmx5"
   database_user: "ZXhhbXBsZV9jemVydGFpbmx5"
@@ -81,7 +81,7 @@ metadata:
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
-  database_host: "bGFiMDcuM2tleS5jb21wYW55"
+  database_host: "bGFiMDYuM2tleS5jb21wYW55"
   database_port: "NTQzMg=="
   database_name: "ZXhhbXBsZV9jemVydGFpbmx5"
   database_user: "ZXhhbXBsZV9jemVydGFpbmx5"
@@ -116,7 +116,7 @@ metadata:
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
-  database_host: "bGFiMDcuM2tleS5jb21wYW55"
+  database_host: "bGFiMDYuM2tleS5jb21wYW55"
   database_port: "NTQzMg=="
   database_name: "ZXhhbXBsZV9jemVydGFpbmx5"
   database_user: "ZXhhbXBsZV9jemVydGFpbmx5"
@@ -131,7 +131,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "clJLWm1XUmxaNFJUeG5MSVlZaDI="
+  messagingPassword: "bm9oc1M5Q0VISHl2TVVuOE1YcE0="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -173,14 +173,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "rRKZmWRlZ4RTxnLIYYh2"
-  messaging.cookie: "HkwUwYs7l6IzAeLPKRvNsWszNmGD94rh"
+  messaging.password: "nohsS9CEHHyvMUn8MXpM"
+  messaging.cookie: "6nvY3L7Z0Y3DODLRWmnYRhn4yUocNouv"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "rRKZmWRlZ4RTxnLIYYh2",
+          "password": "nohsS9CEHHyvMUn8MXpM",
           "tags": [
             "administrator"
           ],
@@ -2981,7 +2981,7 @@ spec:
         checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
         checksum/config: fb9ffd398664bea4a6645fea16c562884b6c1d888e3908ad1c39611bf09acb2e
         # when connection string is changed, restart deployment
-        checksum/secret: b2835c85aeed78172603eb28d09e9d429b6eef1a4ba67517d8791fca8c90cb06
+        checksum/secret: a70f40be4c3769132da4ffd7f41a503d00edd4ecfbfa2a3ca2b22a480955ecb2
     spec:      
       containers:
         - name: auth
@@ -3135,7 +3135,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://lab07.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://lab06.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -3310,7 +3310,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://lab07.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://lab06.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -3506,7 +3506,7 @@ spec:
               value: "keycloak"
             # KC_DB_* env variables are needed for Keycloak
             - name: KC_DB_URL
-              value: "jdbc:postgresql://lab07.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://lab06.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
             - name: KC_DB_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -3641,7 +3641,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://lab07.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://lab06.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -3720,7 +3720,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://lab07.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://lab06.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -3893,7 +3893,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: 4a7da1d20637806a961d395c002787c792e90061b5ccc6f1c4f07a66774005f9
+        checksum/config: 32501199c88ebb7f8a3258af58873d4659f10d2c10834b28093d840ceb4a1c48
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -3919,7 +3919,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://lab07.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://lab06.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -4012,7 +4012,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://lab07.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://lab06.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -4144,7 +4144,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: 3f16995fd84cefb8ad60201f397251a70ddac27c83f02012388556113341cbea
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 9c20d32c2645cf24d457314438d68d38c8d3e90f6c5fcd7520d6f039f257ce0b
+        checksum/mq-secret: 8227c1b0e79595a92c7300a4439e2d5b30710cadc9a36436690cabc9be230ef8
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4203,7 +4203,7 @@ spec:
             - name: AUTH_TOKEN_HEADER_NAME
               value: "X-USERINFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://lab07.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://lab06.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -4341,7 +4341,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 5f6c2ab92e83693b01a9169c77e5e77436482ac07e123874f8b6d3740d72e8af
         # when the messaging secret is changed, restart deployment
-        checksum/secret: d30f9e66ce7f0a5929ff5b3b1162ecd4287530cbd1e6beaeda9838e7efc23f83
+        checksum/secret: 9b75cbe777cae18cf5125ba9a0596882b01a4e77df73a4c5bc15c55985e8e4b4
     spec:      
       securityContext:
         fsGroup: 999
