@@ -108,7 +108,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "VkE0Zk1YSDdTNkxWYURFZHBXNWk="
+  messagingPassword: "c2swQU1sTGFub2E5bmp5Uzk1NHE="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -150,14 +150,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "VA4fMXH7S6LVaDEdpW5i"
-  messaging.cookie: "qtgs5BIr9iqF1ExkyZEFWTz2FMnms6l4"
+  messaging.password: "sk0AMlLanoa9njyS954q"
+  messaging.cookie: "ilVd0FUMSBc12dT3PBL6XPQ9tBgYoZi6"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "VA4fMXH7S6LVaDEdpW5i",
+          "password": "sk0AMlLanoa9njyS954q",
           "tags": [
             "administrator"
           ],
@@ -2244,7 +2244,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: api-gateway-role
-  namespace: "default"
+  namespace: "czertainly-example"
   labels:
     helm.sh/chart: apiGateway-3.4.0-2-2
     app.kubernetes.io/name: api-gateway
@@ -2264,7 +2264,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: messaging-role
-  namespace: "default"
+  namespace: "czertainly-example"
   labels:
     helm.sh/chart: messagingService-3.12.1-3
     app.kubernetes.io/name: messaging-service
@@ -2284,7 +2284,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: czertainly-role
-  namespace: "default"
+  namespace: "czertainly-example"
   labels:
     helm.sh/chart: czertainly-2.13.1
     app.kubernetes.io/name: czertainly
@@ -2307,7 +2307,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: api-gateway-role-binding
-  namespace: "default"
+  namespace: "czertainly-example"
   labels:
     helm.sh/chart: apiGateway-3.4.0-2-2
     app.kubernetes.io/name: api-gateway
@@ -2327,7 +2327,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: messaging-role-binding
-  namespace: "default"
+  namespace: "czertainly-example"
   labels:
     helm.sh/chart: messagingService-3.12.1-3
     app.kubernetes.io/name: messaging-service
@@ -2347,7 +2347,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: czertainly-role-binding
-  namespace: "default"
+  namespace: "czertainly-example"
   labels:
     helm.sh/chart: czertainly-2.13.1
     app.kubernetes.io/name: czertainly
@@ -3649,7 +3649,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: d27ee67f1af35e7a54222a064d05de8f0efd99855c45e0f22660d1c2005f30fb
+        checksum/config: 7a2eee8cb603f6bce15e7a6e23d05f80dff23b8d5b4df5c9f745b790e0a5c534
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -3900,7 +3900,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: 3f16995fd84cefb8ad60201f397251a70ddac27c83f02012388556113341cbea
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: d1abc056674655e9b587a3a186718d62646ca4c772dd428625b2fe373ba1a17f
+        checksum/mq-secret: 35173a38bddb8fd4fa15074c5494985a2fc6584da67bbf0ab60b9c91fe0ff091
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4097,7 +4097,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 5f6c2ab92e83693b01a9169c77e5e77436482ac07e123874f8b6d3740d72e8af
         # when the messaging secret is changed, restart deployment
-        checksum/secret: 4ba15a1c4115256975494f35f5b3e0b54f1bd2f8cbc87805b25771db5f0cf7b0
+        checksum/secret: 4f26fc5ba169bd90e2d95832bc336487cae00f6a825012d8e72694cb898f5a8b
     spec:      
       securityContext:
         fsGroup: 999
