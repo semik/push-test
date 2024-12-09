@@ -108,7 +108,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "dTc4d3ozSjlidFJWUlBtNXVRVlc="
+  messagingPassword: "Yk5BMU8zNVVLM3RxR1VVUkZrSDI="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -150,14 +150,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "u78wz3J9btRVRPm5uQVW"
-  messaging.cookie: "EZi2A8NV3pnl5XQdHLNxGh5tjiIIx2gE"
+  messaging.password: "bNA1O35UK3tqGUURFkH2"
+  messaging.cookie: "G8nloHJ3OljyCGfaWqASh6Ax8rqe1f4q"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "u78wz3J9btRVRPm5uQVW",
+          "password": "bNA1O35UK3tqGUURFkH2",
           "tags": [
             "administrator"
           ],
@@ -4054,7 +4054,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: d464c10f57aa5f746a2c5fc3d15f2222b2f7bee14576d5d0f727d11822a52a3f
+        checksum/config: b19bf4f4541b5bdf0a6396c601a5d319f96450e3a9124dd63e09b98bebd693dd
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4305,7 +4305,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: 3f16995fd84cefb8ad60201f397251a70ddac27c83f02012388556113341cbea
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 03de865c792fcaa4b858b07b57419cdd527002c6f9dca3e8a0356df7b9de6c40
+        checksum/mq-secret: 674855db6fc780817bd298b0aa9acb3482350cdf51810bf999d65c4e28f6b601
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4352,7 +4352,7 @@ spec:
             - "--set=bundles.nginx.service=nginx"
             - "--set=bundles.nginx.resource=bundles/bundle.tar.gz"
         - name: czertainly-core
-          image: docker.io/czertainly/czertainly-core:2.13.1
+          image: docker.io/czertainly/czertainly-core:develop-latest
           imagePullPolicy: IfNotPresent
           env:
             - name: HEADER_ENABLED
@@ -4489,7 +4489,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
         # when the messaging secret is changed, restart deployment
-        checksum/secret: 631d864147a75087021e6d5b134269b775808d6fe8b6029e0154521f2ef106dc
+        checksum/secret: 5c1db83a5c2a78576b4032bbe04c383735c1365ea123659266c0fc2fe71f3fd2
     spec:      
       securityContext:
         fsGroup: 999
