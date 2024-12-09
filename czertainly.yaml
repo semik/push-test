@@ -102,26 +102,13 @@ kind: Secret
 metadata:
   name: network-discovery-provider-secret
 ---
-# Source: czertainly/charts/pyAdcsConnector/templates/pyadcs-connector-secret.yaml
-apiVersion: v1
-data:
-  # if the global values are defined, use it, otherwise use local values
-  database_host: "bGFiMDkuM2tleS5jb21wYW55"
-  database_port: "NTQzMg=="
-  database_name: "ZXhhbXBsZV9jemVydGFpbmx5"
-  database_user: "ZXhhbXBsZV9jemVydGFpbmx5"
-  database_password: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
-kind: Secret
-metadata:
-  name: pyadcs-connector-secret
----
 # Source: czertainly/charts/schedulerService/templates/scheduler-service-secret.yaml
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "SWVpaDhtRTFIY0ZSY2ZNcGoxa0s="
+  messagingPassword: "dTc4d3ozSjlidFJWUlBtNXVRVlc="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -163,14 +150,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "Ieih8mE1HcFRcfMpj1kK"
-  messaging.cookie: "LzwT4brjToHYZ6QuU5GHzik5eVble1GD"
+  messaging.password: "u78wz3J9btRVRPm5uQVW"
+  messaging.cookie: "EZi2A8NV3pnl5XQdHLNxGh5tjiIIx2gE"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "Ieih8mE1HcFRcfMpj1kK",
+          "password": "u78wz3J9btRVRPm5uQVW",
           "tags": [
             "administrator"
           ],
@@ -3081,26 +3068,6 @@ spec:
     app.kubernetes.io/name: network-discovery-provider
     app.kubernetes.io/instance: release-name
 ---
-# Source: czertainly/charts/pyAdcsConnector/templates/pyadcs-connector-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: pyadcs-connector-service
-  labels:
-    helm.sh/chart: pyAdcsConnector-1.1.2-2-develop
-    app.kubernetes.io/name: pyadcs-connector
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.1.2"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8080
-      protocol: "TCP"
-  selector:
-    app.kubernetes.io/name: pyadcs-connector
-    app.kubernetes.io/instance: release-name
----
 # Source: czertainly/charts/schedulerService/templates/scheduler-service-service.yaml
 apiVersion: v1
 kind: Service
@@ -4064,110 +4031,6 @@ spec:
             medium: "Memory"
             sizeLimit: "1Mi"
 ---
-# Source: czertainly/charts/pyAdcsConnector/templates/pyadcs-connector-deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: pyadcs-connector-deployment
-  labels:
-    helm.sh/chart: pyAdcsConnector-1.1.2-2-develop
-    app.kubernetes.io/name: pyadcs-connector
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.1.2"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: pyadcs-connector
-      app.kubernetes.io/instance: release-name
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: pyadcs-connector
-        app.kubernetes.io/instance: release-name
-      annotations:
-        # when the list of the trusted certificates is changed, restart deployment
-        checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-        checksum/config: fb9ffd398664bea4a6645fea16c562884b6c1d888e3908ad1c39611bf09acb2e
-    spec:      
-      containers:
-        - name: pyadcs-connector
-          image: harbor.3key.company/czertainly/czertainly-pyadcs-connector:develop-latest
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: DATABASE_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_host
-            - name: DATABASE_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_port
-            - name: DATABASE_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_name
-            - name: DATABASE_SCHEMA
-              value: "pyadcs"
-            - name: DATABASE_USER
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_user
-            - name: DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: pyadcs-connector-secret
-                  key: database_password
-            - name: LOG_LEVEL
-              value: "INFO"
-            - name: REQUESTS_CA_BUNDLE
-              value: /etc/ssl/certs/pyadcs-trusted-cas.crt
-          ports:
-            - containerPort: 8080
-          securityContext:
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 10001
-          readinessProbe:
-            httpGet:
-              path: /v1
-              port: 8080
-            initialDelaySeconds: 5
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
-          startupProbe:
-            httpGet:
-              path: /v1
-              port: 8080
-            initialDelaySeconds: 10
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 10
-          volumeMounts:
-            - mountPath: /tmp
-              name: ephemeral
-            - name: trusted-certificates-volume
-              mountPath: /etc/ssl/certs/pyadcs-trusted-cas.crt
-              readOnly: true
-              subPath: ca.crt
-      volumes:
-        - name: ephemeral          
-          emptyDir:
-            medium: "Memory"
-            sizeLimit: "1Mi"
-        - name: trusted-certificates-volume
-          secret:
-            defaultMode: 420
-            secretName: trusted-certificates
----
 # Source: czertainly/charts/schedulerService/templates/scheduler-service-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -4191,7 +4054,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: b44a500d4a75179fca1ec0784e76379610e4ce8e050b69c25aac28a96dd7f14f
+        checksum/config: d464c10f57aa5f746a2c5fc3d15f2222b2f7bee14576d5d0f727d11822a52a3f
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4442,7 +4305,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: 3f16995fd84cefb8ad60201f397251a70ddac27c83f02012388556113341cbea
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 48a3001626c23e36d7c2e510d90b510ab37c5184be318cf8503a12a0a062fa91
+        checksum/mq-secret: 03de865c792fcaa4b858b07b57419cdd527002c6f9dca3e8a0356df7b9de6c40
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4626,7 +4489,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
         # when the messaging secret is changed, restart deployment
-        checksum/secret: 2475b58138b0957d9ac6e5fe620d730953fef90493442841ddfb577bc889be63
+        checksum/secret: 631d864147a75087021e6d5b134269b775808d6fe8b6029e0154521f2ef106dc
     spec:      
       securityContext:
         fsGroup: 999
@@ -5103,30 +4966,6 @@ spec:
           curl --silent --retry 5 --retry-delay 5 --retry-all-errors network-discovery-provider-service:8080/v1
   restartPolicy: Never
 ---
-# Source: czertainly/charts/pyAdcsConnector/templates/tests/test-connection.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: "release-name-pyadcs-connector-test-connection"
-  labels:
-    helm.sh/chart: pyAdcsConnector-1.1.2-2-develop
-    app.kubernetes.io/name: pyadcs-connector
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.1.2"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
-    "helm.sh/hook": test
-spec:
-  containers:
-    - name: curl
-      image: curlimages/curl:8.1.1
-      command:
-        - /bin/sh
-        - -c
-        - |
-          curl --silent --retry 5 --retry-delay 5 --retry-all-errors pyadcs-connector-service:8080/v1
-  restartPolicy: Never
----
 # Source: czertainly/charts/schedulerService/templates/tests/test-connection.yaml
 apiVersion: v1
 kind: Pod
@@ -5277,9 +5116,6 @@ spec:
             http://core-service:8080/api/v1/connector/register &&
             curl -X POST -k -H 'content-type: application/json' \
             -d '{"name": "Software-Cryptography-Provider","url": "http://software-cryptography-provider-service:8080","authType": "none"}' \
-            http://core-service:8080/api/v1/connector/register &&
-            curl -X POST -k -H 'content-type: application/json' \
-            -d '{"name": "PyADCS-Connector","url": "http://pyadcs-connector-service:8080","authType": "none"}' \
             http://core-service:8080/api/v1/connector/register &&
             curl -X POST -k -H 'content-type: application/json' \
             -d '{"name": "CT-Logs-Discovery-Provider","url": "http://ct-logs-discovery-provider-service:8080","authType": "none"}' \
