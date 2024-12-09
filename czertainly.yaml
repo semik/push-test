@@ -121,7 +121,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "ZnhVRHhPN2x6Mm9ta0Zpd2xRd0I="
+  messagingPassword: "Qjl6YlNjM2dMT3RvUTBXU3g1aDA="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -163,14 +163,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "fxUDxO7lz2omkFiwlQwB"
-  messaging.cookie: "leDG82SeM5CF4aCifd8NApLBUFUitvId"
+  messaging.password: "B9zbSc3gLOtoQ0WSx5h0"
+  messaging.cookie: "ZlkD0O4fC5AIx3KE02QHZia74DVXE9qY"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "fxUDxO7lz2omkFiwlQwB",
+          "password": "B9zbSc3gLOtoQ0WSx5h0",
           "tags": [
             "administrator"
           ],
@@ -4191,7 +4191,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: fa8955236979099f2099adda98b21080202a9e3bc869713fbdf4847a83f72f35
+        checksum/config: e952bd0f39095f1afa1e76f599fb225d1b129e383413c6c4ac0eb8c93eaa0df5
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4442,7 +4442,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: e2b99112760476b03c266f5d87afef924e6d2e9a487059ebd45b767f494a8827
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 00222c4333fe1c94e6ec7d196bb9440f24455aa2d7686de85b08d82e6a46f868
+        checksum/mq-secret: 0694e0f5fbca51133933bccc6fe4bd04c162510cd2410be110571f3117a4d233
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4626,7 +4626,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
         # when the messaging secret is changed, restart deployment
-        checksum/secret: dc1b3ad859c294be121fe29ab5707eaa422b3de80c99e23a32fe2d826f6395d4
+        checksum/secret: dcfca5eb9e1afcc6ad5a78de35e4a8b42b15b4251e24bc4d8b58e777a53ea39d
     spec:      
       securityContext:
         fsGroup: 999
