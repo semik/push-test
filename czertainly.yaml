@@ -121,7 +121,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "TVBaTHRxN0diNEtVS3FJc1VKQ08="
+  messagingPassword: "SWVpaDhtRTFIY0ZSY2ZNcGoxa0s="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -163,14 +163,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "MPZLtq7Gb4KUKqIsUJCO"
-  messaging.cookie: "gyf9t96VqJs2W9rPLCw9V00vDfSrGH2o"
+  messaging.password: "Ieih8mE1HcFRcfMpj1kK"
+  messaging.cookie: "LzwT4brjToHYZ6QuU5GHzik5eVble1GD"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "MPZLtq7Gb4KUKqIsUJCO",
+          "password": "Ieih8mE1HcFRcfMpj1kK",
           "tags": [
             "administrator"
           ],
@@ -4191,7 +4191,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: 49b5eae1190e6be39c0d3609db8a11967c5524e2e8d1b14f54e140cd2fdd17c9
+        checksum/config: b44a500d4a75179fca1ec0784e76379610e4ce8e050b69c25aac28a96dd7f14f
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4442,7 +4442,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: 3f16995fd84cefb8ad60201f397251a70ddac27c83f02012388556113341cbea
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 9e45a9d736b5d7da97ecb94a62b7fad653ca128b4c44389fcce6fc6bbb7291a0
+        checksum/mq-secret: 48a3001626c23e36d7c2e510d90b510ab37c5184be318cf8503a12a0a062fa91
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4626,7 +4626,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
         # when the messaging secret is changed, restart deployment
-        checksum/secret: a81e67c2103ba8ba060eca256f550cddb63ab95c0d255a421119c4da50e4d8fb
+        checksum/secret: 2475b58138b0957d9ac6e5fe620d730953fef90493442841ddfb577bc889be63
     spec:      
       securityContext:
         fsGroup: 999
@@ -4652,7 +4652,7 @@ spec:
       #        cp /tmp/rabbitmq/enabled_plugins /etc/rabbitmq/enabled_plugins
       containers:
         - name: rabbitmq
-          image: docker.io/rabbitmq:develop-latest
+          image: docker.io/rabbitmq:3.12.1
           imagePullPolicy: IfNotPresent
           env:
             - name: RABBITMQ_DEFAULT_PASS
