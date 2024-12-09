@@ -121,7 +121,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "Wlp6UHhtWjJWUFpzcnlVTUI1S1g="
+  messagingPassword: "RTJJeWVGczRzN01DSVV5M0NncEI="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -163,14 +163,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "ZZzPxmZ2VPZsryUMB5KX"
-  messaging.cookie: "Ybiq4mLSPA1MpQTmbbvOmeYBHNcnlTsn"
+  messaging.password: "E2IyeFs4s7MCIUy3CgpB"
+  messaging.cookie: "apgAVMmEBkrLBxLjiUoqez7NNI0E1WTQ"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "ZZzPxmZ2VPZsryUMB5KX",
+          "password": "E2IyeFs4s7MCIUy3CgpB",
           "tags": [
             "administrator"
           ],
@@ -4093,7 +4093,7 @@ spec:
     spec:      
       containers:
         - name: pyadcs-connector
-          image: harbor.3key.company/czertainly/czertainly-pyadcs-connector:1.1.2
+          image: docker.io/czertainly/czertainly-pyadcs-connector:1.1.2
           imagePullPolicy: IfNotPresent
           env:
             - name: DATABASE_HOST
@@ -4191,7 +4191,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: c234b45daa9086f16a20940e91235657026774c7c9389e97c28993207c69c709
+        checksum/config: 4de4dd2f1817cce1b34f88a2a2f24c7d4274e0e24bbc2dab43ba9125266524e4
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4442,7 +4442,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: e2b99112760476b03c266f5d87afef924e6d2e9a487059ebd45b767f494a8827
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 13bab04fe75a8858f678e219e66bf6c70ae6eafc2d28cac54ab97eb4b77578e9
+        checksum/mq-secret: 361ea6210209120b95ab2499244410633111b51054beb31e43f74626f5cac7f1
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4626,7 +4626,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
         # when the messaging secret is changed, restart deployment
-        checksum/secret: 578f47817afd3843aa2e3abcd33cceaa8848022ad4037eced5895656e84ae134
+        checksum/secret: 0b8202588a508d6da97aaf6c6d0e844ec8c7db70e8050f6126fd7d9af5adc194
     spec:      
       securityContext:
         fsGroup: 999
