@@ -121,21 +121,11 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "VmtuWTRxaEVONGVaOW9wZ0xFbno="
+  messagingPassword: "MWlqNXlJRlFWNXRhSDFxc0NsZFA="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
   name: scheduler-service-secret
----
-# Source: czertainly/charts/softwareCryptographyProvider/templates/software-cryptography-provider-secret.yaml
-apiVersion: v1
-data:
-  # if the global values are defined, use it, otherwise use local values
-  password: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
-  username: "ZXhhbXBsZV9jemVydGFpbmx5"
-kind: Secret
-metadata:
-  name: software-cryptography-provider-secret
 ---
 # Source: czertainly/templates/admin/admin-certificate-secret.yaml
 apiVersion: v1
@@ -163,14 +153,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "VknY4qhEN4eZ9opgLEnz"
-  messaging.cookie: "f8GmYuLnWeOCiUysvwcavRUUj8wQCjdQ"
+  messaging.password: "1ij5yIFQV5taH1qsCldP"
+  messaging.cookie: "3wtZUvjQXE63otE1leFtSIlM3499sQtS"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "VknY4qhEN4eZ9opgLEnz",
+          "password": "1ij5yIFQV5taH1qsCldP",
           "tags": [
             "administrator"
           ],
@@ -3121,26 +3111,6 @@ spec:
     app.kubernetes.io/name: scheduler-service
     app.kubernetes.io/instance: release-name
 ---
-# Source: czertainly/charts/softwareCryptographyProvider/templates/software-cryptography-provider-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: software-cryptography-provider-service
-  labels:
-    helm.sh/chart: softwareCryptographyProvider-1.2.2-2-develop
-    app.kubernetes.io/name: software-cryptography-provider
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.2.2"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  type: ClusterIP
-  ports:
-    - port: 8080
-      protocol: "TCP"
-  selector:
-    app.kubernetes.io/name: software-cryptography-provider
-    app.kubernetes.io/instance: release-name
----
 # Source: czertainly/charts/x509ComplianceProvider/templates/x509-compliance-provider-service.yaml
 apiVersion: v1
 kind: Service
@@ -4191,7 +4161,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: 162652e04e662a8a0a587a4f19323166d037503ecbb79a439bf6b6ef7e6f95f3
+        checksum/config: 3c56eda85cd2580ea66c063b7195ecd65bf9c3bcc65d009b2504557aca07842b
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4244,87 +4214,6 @@ spec:
                 secretKeyRef:
                   name: scheduler-service-secret
                   key: messagingPassword
-          ports:
-            - containerPort: 8080
-          securityContext:
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 10001
-          readinessProbe:
-            httpGet:
-              path: /health/readiness
-              port: 8080
-            initialDelaySeconds: 15
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
-          startupProbe:
-            httpGet:
-              path: /health/liveness
-              port: 8080
-            initialDelaySeconds: 15
-            timeoutSeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 45
-          volumeMounts:
-            - mountPath: /tmp
-              name: ephemeral
-      volumes:
-        - name: ephemeral          
-          emptyDir:
-            medium: "Memory"
-            sizeLimit: "1Mi"
----
-# Source: czertainly/charts/softwareCryptographyProvider/templates/software-cryptography-provider-deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: software-cryptography-provider-deployment
-  labels:
-    helm.sh/chart: softwareCryptographyProvider-1.2.2-2-develop
-    app.kubernetes.io/name: software-cryptography-provider
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.2.2"
-    app.kubernetes.io/managed-by: Helm
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: software-cryptography-provider
-      app.kubernetes.io/instance: release-name
-  template:
-    metadata:
-      labels:
-        app.kubernetes.io/name: software-cryptography-provider
-        app.kubernetes.io/instance: release-name
-    spec:      
-      containers:
-        - name: software-cryptography-provider
-          image: docker.io/3keycompany/czertainly-software-cryptography-provider:develop-latest
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: PORT
-              value: "8080"
-            - name: LOGGING_LEVEL_COM_CZERTAINLY
-              value: "INFO"
-            - name: JDBC_URL
-              value: "jdbc:postgresql://lab09.3key.company:5432/example_czertainly?characterEncoding=UTF-8"
-            - name: JDBC_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: software-cryptography-provider-secret
-                  key: username
-            - name: JDBC_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: software-cryptography-provider-secret
-                  key: password
-            - name: TOKEN_DELETE_ON_REMOVE
-              value: "false"
-            - name: JAVA_OPTS
-              value: ""
           ports:
             - containerPort: 8080
           securityContext:
@@ -4442,7 +4331,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: e2b99112760476b03c266f5d87afef924e6d2e9a487059ebd45b767f494a8827
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 5d8b4912d7cd6959d900a9d82c4f0b535a78c8ca5208e8976917db65208864b8
+        checksum/mq-secret: b786e90d7a3258f480255ce763b70e9d858d83b33d452187edf14a7cc893820d
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4626,7 +4515,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
         # when the messaging secret is changed, restart deployment
-        checksum/secret: bd74ff21e1272717a6b77c3574d290a24f1f5811769f4e22ef24d5890d1efb6c
+        checksum/secret: aa27392d74da53ec62228a75ee823f3b7f02bf888d283b7ceccd4c8a8d77fef6
     spec:      
       securityContext:
         fsGroup: 999
@@ -5151,30 +5040,6 @@ spec:
           curl --silent --retry 5 --retry-delay 5 --retry-all-errors scheduler-service-service:8080/health/liveness
   restartPolicy: Never
 ---
-# Source: czertainly/charts/softwareCryptographyProvider/templates/tests/test-connection.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: "release-name-software-cryptography-provider-test-connection"
-  labels:
-    helm.sh/chart: softwareCryptographyProvider-1.2.2-2-develop
-    app.kubernetes.io/name: software-cryptography-provider
-    app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.2.2"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
-    "helm.sh/hook": test
-spec:
-  containers:
-    - name: curl
-      image: curlimages/curl:8.1.1
-      command:
-        - /bin/sh
-        - -c
-        - |
-          curl --silent --retry 5 --retry-delay 5 --retry-all-errors software-cryptography-provider-service:8080/v1
-  restartPolicy: Never
----
 # Source: czertainly/charts/x509ComplianceProvider/templates/tests/test-connection.yaml
 apiVersion: v1
 kind: Pod
@@ -5274,9 +5139,6 @@ spec:
             http://core-service:8080/api/v1/connector/register &&
             curl -X POST -k -H 'content-type: application/json' \
             -d '{"name": "Keystore-Entity-Provider","url": "http://keystore-entity-provider-service:8080","authType": "none"}' \
-            http://core-service:8080/api/v1/connector/register &&
-            curl -X POST -k -H 'content-type: application/json' \
-            -d '{"name": "Software-Cryptography-Provider","url": "http://software-cryptography-provider-service:8080","authType": "none"}' \
             http://core-service:8080/api/v1/connector/register &&
             curl -X POST -k -H 'content-type: application/json' \
             -d '{"name": "PyADCS-Connector","url": "http://pyadcs-connector-service:8080","authType": "none"}' \
