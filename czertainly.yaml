@@ -121,7 +121,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "YmV6aWxpc2tha3RhYm9ydTA2MTIyMDI0"
   dbUsername: "ZXhhbXBsZV9jemVydGFpbmx5"
-  messagingPassword: "RmhLbXNTeDhRakQxQlVpcFl4eXU="
+  messagingPassword: "Rk5jYWpDM3oxakhFR29EVWtqeTI="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -163,14 +163,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "FhKmsSx8QjD1BUipYxyu"
-  messaging.cookie: "fLn7L7x8s3YpjVCBj6XgcGNxFYl1Nsrc"
+  messaging.password: "FNcajC3z1jHEGoDUkjy2"
+  messaging.cookie: "RIMyIjTgAUmcM618ERELy3mBdzUqyuJ1"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "FhKmsSx8QjD1BUipYxyu",
+          "password": "FNcajC3z1jHEGoDUkjy2",
           "tags": [
             "administrator"
           ],
@@ -3373,7 +3373,7 @@ spec:
     spec:      
       containers:
         - name: auth
-          image: docker.io/czertainly/czertainly-auth:develop-latest
+          image: docker.io/czertainly/czertainly-auth@b93298f10051b9ab00935d40b0569a3a9495d29d1e23a6f2b8396f29785d7219
           imagePullPolicy: IfNotPresent
           env:
             - name: AUTH_CREATE_UNKNOWN_USERS
@@ -4191,7 +4191,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: 1486047a133a6e5e62c5303b7e623295e05f50ba010780ef8e95042e9b367f60
+        checksum/config: 2a48896f95abe33072787190b5be16f9c70877835727a0292ec65de622d05373
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4442,7 +4442,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: e2b99112760476b03c266f5d87afef924e6d2e9a487059ebd45b767f494a8827
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: d659a4ad780b36a2ee902885f1ad66743bab7d412536ace68830a70c93bf448e
+        checksum/mq-secret: 6be97fb9e948f9bc50d38d8a63e989ff4ab3b2d338c63def2f1728af6bf655c7
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4489,7 +4489,7 @@ spec:
             - "--set=bundles.nginx.service=nginx"
             - "--set=bundles.nginx.resource=bundles/bundle.tar.gz"
         - name: czertainly-core
-          image: docker.io/czertainly/czertainly-core:develop-latest
+          image: docker.io/czertainly/czertainly-core@db785070703457dc5932962993c950545100e0a836382eba5eb7a5c390f4483c
           imagePullPolicy: IfNotPresent
           env:
             - name: HEADER_ENABLED
@@ -4626,7 +4626,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
         # when the messaging secret is changed, restart deployment
-        checksum/secret: 54624e119961a8096425e48246b06e98311d1d46219ca6b3c87f1399b6aed7f2
+        checksum/secret: 5ae38782953ba9e0123d00a4c7762b7223267c00b740785cbcc9d61acd077813
     spec:      
       securityContext:
         fsGroup: 999
