@@ -2718,6 +2718,26 @@ data:
     ## Management plugin
     loopback_users = none
 ---
+# Source: czertainly/templates/appsec-pkife-data-messaging-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/name: messaging-service
+  name: data-messaging-statefulset-0
+  namespace: appsec-pkife-dev
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+  # volumeMode: Filesystem
+  storageClassName: nfs-client
+  volumeMode: Filesystem
+  volumeName: appsec-pkife-data-messaging-pv
+---
 # Source: czertainly/charts/czertainly/charts/apiGateway/templates/rbac/role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
