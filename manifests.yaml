@@ -133,7 +133,7 @@ data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "aGVzbG8xMjM="
   dbUsername: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
-  messagingPassword: "aHlUQ28wRjJ0ZUR0TkROdHpVZko="
+  messagingPassword: "R29sZ2JybDRONXFLMzg4cUhjRW0="
   messagingUsername: "Y3plcnRhaW5seQ=="
 kind: Secret
 metadata:
@@ -175,14 +175,14 @@ metadata:
   name: global-secret
 stringData:  
   messaging.username: "czertainly"
-  messaging.password: "hyTCo0F2teDtNDNtzUfJ"
-  messaging.cookie: "sKRh4AbFD3HkI9m98UnRcwM2pHoTJzC1"
+  messaging.password: "Golgbrl4N5qK388qHcEm"
+  messaging.cookie: "AcmK1lqfFztsNz5jXgloeV20Vh8n1R9g"
   messaging.definitions.json: |
     {
       "users": [
         {
           "name": "czertainly",
-          "password": "hyTCo0F2teDtNDNtzUfJ",
+          "password": "Golgbrl4N5qK388qHcEm",
           "tags": [
             "administrator"
           ],
@@ -935,7 +935,7 @@ data:
           "clientId": "czertainly",
           "name": "czertainly",
           "description": "",
-          "rootUrl": "https://semik66a.3key.company",
+          "rootUrl": "https://develop.3key.company",
           "adminUrl": "",
           "baseUrl": "",
           "surrogateAuthRequired": false,
@@ -2586,16 +2586,16 @@ data:
       -H 'content-type: application/json' \
       -d '
       {
-        "issuerUrl":"https://semik66a.3key.company/kc/realms/CZERTAINLY",
+        "issuerUrl":"https://develop.3key.company/kc/realms/CZERTAINLY",
         "clientId": "czertainly",
         "clientSecret": "'"$CLIENT_SECRET"'",
-        "authorizationUrl": "https://semik66a.3key.company/kc/realms/CZERTAINLY/protocol/openid-connect/auth",
+        "authorizationUrl": "https://develop.3key.company/kc/realms/CZERTAINLY/protocol/openid-connect/auth",
         "tokenUrl": "http://keycloak-internal-service:8080/kc/realms/CZERTAINLY/protocol/openid-connect/token",
-        "logoutUrl": "https://semik66a.3key.company/kc/realms/CZERTAINLY/protocol/openid-connect/logout",
+        "logoutUrl": "https://develop.3key.company/kc/realms/CZERTAINLY/protocol/openid-connect/logout",
         "jwkSetUrl": "http://keycloak-internal-service:8080/kc/realms/CZERTAINLY/protocol/openid-connect/certs",
         "scope": ["openid"],
         "audiences": ["czertainly"],
-        "postLogoutUrl": "https://semik66a.3key.company/administrator/",
+        "postLogoutUrl": "https://develop.3key.company/administrator/",
         "skew": 60
       }' \
       http://localhost:8080/api/v1/settings/authentication/oauth2Providers/internal
@@ -4296,7 +4296,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: c0de34c528bf40625690fad931022e8015294d8d2afdb45be2b7e0b5f1948cdc
+        checksum/config: 70445aae291cfe38abe20b1d8de3d8f7d92bf63c34e6e91727407fdd86a9646c
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4547,7 +4547,7 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: e2b99112760476b03c266f5d87afef924e6d2e9a487059ebd45b767f494a8827
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 9ca8ef68e84676ea948418eaa5d9fa5e7651d866c09b4162c4cd672d91ed9d5a
+        checksum/mq-secret: bafd8ba0d011645cd7cb7e9713539e1e8af3bad0c8fb561ee19fa7e9c73c3e41
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4731,7 +4731,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
         # when the messaging secret is changed, restart deployment
-        checksum/secret: bff18a36302d418fa1d9f323661c197a6efe317c751273084b627fe774d2a837
+        checksum/secret: acdce696bdf51461e4fffaca60fdb429b6dfae4ec80c62d64ab6dde0fe97c7db
     spec:      
       securityContext:
         fsGroup: 999
@@ -4911,7 +4911,7 @@ spec:
         # when the messaging config map is changed, restart deployment
         checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
         # when the messaging secret is changed, restart deployment
-        checksum/secret: 218d783d04d602be0fcaa189831ab62e7c7d9069454a433e068ea5c8c2b0d6b8
+        checksum/secret: b19fb333f69a371d6c15cc19ad240be7e90356d8a603d091ae75a304dfe79293
     spec:      
       securityContext:
         fsGroup: 999
@@ -5088,10 +5088,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - semik66a.3key.company
+      - develop.3key.company
       secretName: czertainly-ingress-tls
   rules:
-    - host: semik66a.3key.company
+    - host: develop.3key.company
       http:
         paths:
           - path: /
