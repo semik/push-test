@@ -5,7 +5,7 @@ kind: ServiceAccount
 metadata:
   name: api-gateway-sa
   labels:
-    helm.sh/chart: apiGateway-3.8.0
+    helm.sh/chart: apiGateway-3.8.0-1
     app.kubernetes.io/name: api-gateway
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "3.8.0"
@@ -17,10 +17,10 @@ kind: ServiceAccount
 metadata:
   name: messaging-rabbitmq-sa
   labels:
-    helm.sh/chart: messagingService-3.12.1-4
+    helm.sh/chart: messagingService-3.13.7
     app.kubernetes.io/name: messaging-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: czertainly/charts/czertainly/charts/schedulerService/charts/messaging-rabbitmq/templates/rbac/service-account.yaml
@@ -29,10 +29,10 @@ kind: ServiceAccount
 metadata:
   name: messaging-rabbitmq-sa
   labels:
-    helm.sh/chart: messaging-rabbitmq-3.12.1-4
+    helm.sh/chart: messaging-rabbitmq-3.13.7
     app.kubernetes.io/name: messaging-rabbitmq
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: czertainly/charts/czertainly/templates/rbac/service-account.yaml
@@ -41,17 +41,17 @@ kind: ServiceAccount
 metadata:
   name: czertainly-sa
   labels:
-    helm.sh/chart: czertainly-2.14.0
+    helm.sh/chart: czertainly-2.14.1
     app.kubernetes.io/name: czertainly
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: czertainly/charts/czertainly/charts/authService/templates/auth-secret.yaml
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
-  connection-string: SG9zdD1kZXZlbG9wLWRiLjNrZXkuY29tcGFueTtQb3J0PTU0MzI7VXNlcm5hbWU9ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk7UGFzc3dvcmQ9aGVzbG8xMjM7RGF0YWJhc2U9ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk7UG9vbGluZz10cnVl
+  connection-string: SG9zdD1wZy1ib3VuY2VyLXNlcnZpY2U7UG9ydD01NDMyO1VzZXJuYW1lPWFjY2VwdGFuY2UtZXhhbXBsZV9jemVydGFpbmx5O1Bhc3N3b3JkPWhlc2xvMTIzO0RhdGFiYXNlPWFjY2VwdGFuY2UtZXhhbXBsZV9jemVydGFpbmx5O1Bvb2xpbmc9dHJ1ZQ==
 kind: Secret
 metadata:
   name: auth-secret
@@ -61,7 +61,7 @@ apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
   password: "aGVzbG8xMjM="
-  username: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
+  username: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
 kind: Secret
 metadata:
   name: cryptosense-discovery-provider-secret
@@ -70,10 +70,10 @@ metadata:
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
-  database_host: "ZGV2ZWxvcC1kYi4za2V5LmNvbXBhbnk="
+  database_host: "cGctYm91bmNlci1zZXJ2aWNl"
   database_port: "NTQzMg=="
-  database_name: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
-  database_user: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
+  database_name: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
+  database_user: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
   database_password: "aGVzbG8xMjM="
 kind: Secret
 metadata:
@@ -83,10 +83,10 @@ metadata:
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
-  database_host: "ZGV2ZWxvcC1kYi4za2V5LmNvbXBhbnk="
+  database_host: "cGctYm91bmNlci1zZXJ2aWNl"
   database_port: "NTQzMg=="
-  database_name: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
-  database_user: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
+  database_name: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
+  database_user: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
   database_password: "aGVzbG8xMjM="
   username: "YWRtaW4="
   password: "YWRtaW4="
@@ -99,7 +99,7 @@ apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
   password: "aGVzbG8xMjM="
-  username: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
+  username: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
 kind: Secret
 metadata:
   name: keystore-entity-provider-secret
@@ -109,19 +109,28 @@ apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
   password: "aGVzbG8xMjM="
-  username: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
+  username: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
 kind: Secret
 metadata:
   name: network-discovery-provider-secret
+---
+# Source: czertainly/charts/czertainly/charts/pgBouncer/templates/pg-bouncer-secret.yaml
+apiVersion: v1
+stringData:
+  userlist.txt: |-    
+    "acceptance-example_czertainly" "heslo123"
+kind: Secret
+metadata:
+  name: pg-bouncer-secret
 ---
 # Source: czertainly/charts/czertainly/charts/pyAdcsConnector/templates/pyadcs-connector-secret.yaml
 apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
-  database_host: "ZGV2ZWxvcC1kYi4za2V5LmNvbXBhbnk="
+  database_host: "cGctYm91bmNlci1zZXJ2aWNl"
   database_port: "NTQzMg=="
-  database_name: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
-  database_user: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
+  database_name: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
+  database_user: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
   database_password: "aGVzbG8xMjM="
 kind: Secret
 metadata:
@@ -132,9 +141,7 @@ apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
   dbPassword: "aGVzbG8xMjM="
-  dbUsername: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
-  messagingPassword: "aHlUQ28wRjJ0ZUR0TkROdHpVZko="
-  messagingUsername: "Y3plcnRhaW5seQ=="
+  dbUsername: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
 kind: Secret
 metadata:
   name: scheduler-service-secret
@@ -144,7 +151,7 @@ apiVersion: v1
 data:
   # if the global values are defined, use it, otherwise use local values
   password: "aGVzbG8xMjM="
-  username: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
+  username: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
 kind: Secret
 metadata:
   name: software-cryptography-provider-secret
@@ -163,26 +170,26 @@ data:
 apiVersion: v1
 data:
   jdbcPassword: "aGVzbG8xMjM="
-  jdbcUsername: "ZGV2ZWxvcC1leGFtcGxlX2N6ZXJ0YWlubHk="
+  jdbcUsername: "YWNjZXB0YW5jZS1leGFtcGxlX2N6ZXJ0YWlubHk="
 kind: Secret
 metadata:
   name: core-secret
 ---
-# Source: czertainly/charts/czertainly/templates/global-secret.yaml
+# Source: czertainly/charts/czertainly/templates/messaging-secret.yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: global-secret
-stringData:  
-  messaging.username: "czertainly"
-  messaging.password: "hyTCo0F2teDtNDNtzUfJ"
-  messaging.cookie: "sKRh4AbFD3HkI9m98UnRcwM2pHoTJzC1"
-  messaging.definitions.json: |
+  name: messaging-secret
+stringData:
+  messaging.username: "admin"
+  messaging.password: "123"
+  messaging.cookie: "c4eGHK4gM3v+5BHTFkGaRzqNQu0JcokVJkFK7CmJ"
+  messaging.definitions.json: |-    
     {
       "users": [
         {
-          "name": "czertainly",
-          "password": "hyTCo0F2teDtNDNtzUfJ",
+          "name": "admin",
+          "password": "123",
           "tags": [
             "administrator"
           ],
@@ -196,7 +203,7 @@ stringData:
       ],
       "permissions": [
         {
-          "user": "czertainly",
+          "user": "admin",
           "vhost": "czertainly",
           "configure": ".*",
           "write": ".*",
@@ -220,10 +227,10 @@ kind: ConfigMap
 metadata:
   name: fe-administrator-configmap
   labels:
-    helm.sh/chart: feAdministrator-2.14.0
+    helm.sh/chart: feAdministrator-2.14.1
     app.kubernetes.io/name: fe-administrator
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
 data:
   config.js: |
@@ -935,7 +942,7 @@ data:
           "clientId": "czertainly",
           "name": "czertainly",
           "description": "",
-          "rootUrl": "https://semik66a.3key.company",
+          "rootUrl": "https://acceptance.3key.company",
           "adminUrl": "",
           "baseUrl": "",
           "surrogateAuthRequired": false,
@@ -2534,6 +2541,30 @@ data:
     END;
     \$\$"
 ---
+# Source: czertainly/charts/czertainly/charts/pgBouncer/templates/pg-bouncer-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pg-bouncer-configmap
+data:
+  pgbouncer.ini: |-    
+    [databases]
+    acceptance-example_czertainly = host=acceptance-db.3key.company port=5432 auth_user=acceptance-example_czertainly
+    
+    [pgbouncer]
+    admin_users = postgres
+    auth_file = /etc/pgbouncer/userlist.txt
+    auth_type = plain
+    ignore_startup_parameters = extra_float_digits
+    listen_addr = 0.0.0.0
+    listen_port = 5432
+    max_client_conn = 1000
+    max_prepared_statements = 10
+    pool_mode = transaction
+    server_reset_query = DISCARD ALL
+    unix_socket_dir = 
+    user = postgres
+---
 # Source: czertainly/charts/czertainly/templates/core-scripts-configmap.yaml
 apiVersion: v1
 kind: ConfigMap
@@ -2586,16 +2617,16 @@ data:
       -H 'content-type: application/json' \
       -d '
       {
-        "issuerUrl":"https://semik66a.3key.company/kc/realms/CZERTAINLY",
+        "issuerUrl":"https://acceptance.3key.company/kc/realms/CZERTAINLY",
         "clientId": "czertainly",
         "clientSecret": "'"$CLIENT_SECRET"'",
-        "authorizationUrl": "https://semik66a.3key.company/kc/realms/CZERTAINLY/protocol/openid-connect/auth",
+        "authorizationUrl": "https://acceptance.3key.company/kc/realms/CZERTAINLY/protocol/openid-connect/auth",
         "tokenUrl": "http://keycloak-internal-service:8080/kc/realms/CZERTAINLY/protocol/openid-connect/token",
-        "logoutUrl": "https://semik66a.3key.company/kc/realms/CZERTAINLY/protocol/openid-connect/logout",
+        "logoutUrl": "https://acceptance.3key.company/kc/realms/CZERTAINLY/protocol/openid-connect/logout",
         "jwkSetUrl": "http://keycloak-internal-service:8080/kc/realms/CZERTAINLY/protocol/openid-connect/certs",
         "scope": ["openid"],
         "audiences": ["czertainly"],
-        "postLogoutUrl": "https://semik66a.3key.company/administrator/",
+        "postLogoutUrl": "https://acceptance.3key.company/administrator/",
         "skew": 60
       }' \
       http://localhost:8080/api/v1/settings/authentication/oauth2Providers/internal
@@ -2665,21 +2696,26 @@ data:
             preserve_host: true
             paths:
               - /mq
+---
+# Source: czertainly/charts/czertainly/templates/messaging-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: messaging-configmap
+data:
   messaging.host: "messaging-service"
-  messaging.http.port: "15672"
   messaging.amqp.port: "5672"
-  messaging.enabled_plugins: |
+  messaging.enabled_plugins: |-
     [rabbitmq_peer_discovery_k8s, rabbitmq_management].
-  messaging.rabbitmq.conf: |
+  messaging.rabbitmq.conf: |-
     cluster_formation.peer_discovery_backend = rabbit_peer_discovery_k8s
     cluster_formation.k8s.host = kubernetes.default
     queue_master_locator=min-masters
-  
+    
     ## Logging to console
     log.console = true
     log.console.level = info
     log.file = false
-  
     ## Management plugin
     loopback_users = none
 ---
@@ -2690,7 +2726,7 @@ metadata:
   name: api-gateway-role
   namespace: "czertainly-example"
   labels:
-    helm.sh/chart: apiGateway-3.8.0
+    helm.sh/chart: apiGateway-3.8.0-1
     app.kubernetes.io/name: api-gateway
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "3.8.0"
@@ -2710,10 +2746,10 @@ metadata:
   name: messaging-role
   namespace: "czertainly-example"
   labels:
-    helm.sh/chart: messagingService-3.12.1-4
+    helm.sh/chart: messagingService-3.13.7
     app.kubernetes.io/name: messaging-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups: [""]
@@ -2730,10 +2766,10 @@ metadata:
   name: messaging-role
   namespace: "czertainly-example"
   labels:
-    helm.sh/chart: messaging-rabbitmq-3.12.1-4
+    helm.sh/chart: messaging-rabbitmq-3.13.7
     app.kubernetes.io/name: messaging-rabbitmq
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups: [""]
@@ -2750,10 +2786,10 @@ metadata:
   name: czertainly-role
   namespace: "czertainly-example"
   labels:
-    helm.sh/chart: czertainly-2.14.0
+    helm.sh/chart: czertainly-2.14.1
     app.kubernetes.io/name: czertainly
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups: [""]
@@ -2773,7 +2809,7 @@ metadata:
   name: api-gateway-role-binding
   namespace: "czertainly-example"
   labels:
-    helm.sh/chart: apiGateway-3.8.0
+    helm.sh/chart: apiGateway-3.8.0-1
     app.kubernetes.io/name: api-gateway
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "3.8.0"
@@ -2793,10 +2829,10 @@ metadata:
   name: messaging-role-binding
   namespace: "czertainly-example"
   labels:
-    helm.sh/chart: messagingService-3.12.1-4
+    helm.sh/chart: messagingService-3.13.7
     app.kubernetes.io/name: messaging-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
@@ -2813,10 +2849,10 @@ metadata:
   name: messaging-role-binding
   namespace: "czertainly-example"
   labels:
-    helm.sh/chart: messaging-rabbitmq-3.12.1-4
+    helm.sh/chart: messaging-rabbitmq-3.13.7
     app.kubernetes.io/name: messaging-rabbitmq
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
@@ -2833,10 +2869,10 @@ metadata:
   name: czertainly-role-binding
   namespace: "czertainly-example"
   labels:
-    helm.sh/chart: czertainly-2.14.0
+    helm.sh/chart: czertainly-2.14.1
     app.kubernetes.io/name: czertainly
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
 subjects:
   - kind: ServiceAccount
@@ -2852,7 +2888,7 @@ kind: Service
 metadata:
   name: api-gateway-service
   labels:
-    helm.sh/chart: apiGateway-3.8.0
+    helm.sh/chart: apiGateway-3.8.0-1
     app.kubernetes.io/name: api-gateway
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "3.8.0"
@@ -2876,10 +2912,10 @@ kind: Service
 metadata:
   name: auth-opa-policies-service
   labels:
-    helm.sh/chart: authOpaPolicies-1.2.1-2
+    helm.sh/chart: authOpaPolicies-1.3.0
     app.kubernetes.io/name: auth-opa-policies
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.2.1"
+    app.kubernetes.io/version: "1.3.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -2896,10 +2932,10 @@ kind: Service
 metadata:
   name: auth-service
   labels:
-    helm.sh/chart: authService-1.6.0
+    helm.sh/chart: authService-1.6.1
     app.kubernetes.io/name: auth-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.6.0"
+    app.kubernetes.io/version: "1.6.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -2915,7 +2951,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    helm.sh/chart: commonCredentialProvider-1.3.3-2
+    helm.sh/chart: commonCredentialProvider-1.3.3-3
     app.kubernetes.io/name: common-credential-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.3.3"
@@ -2936,7 +2972,7 @@ kind: Service
 metadata:
   name: cryptosense-discovery-provider-service
   labels:
-    helm.sh/chart: cryptosenseDiscoveryProvider-1.4.0-3
+    helm.sh/chart: cryptosenseDiscoveryProvider-1.4.0-4
     app.kubernetes.io/name: cryptosense-discovery-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.4.0"
@@ -2955,10 +2991,10 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    helm.sh/chart: ctLogsDiscoveryProvider-1.0.0-2
+    helm.sh/chart: ctLogsDiscoveryProvider-1.0.1
     app.kubernetes.io/name: ct-logs-discovery-provider
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/version: "1.0.1"
     app.kubernetes.io/managed-by: Helm
   name: ct-logs-discovery-provider-service
 spec:
@@ -2976,10 +3012,10 @@ kind: Service
 metadata:
   name: fe-administrator-service
   labels:
-    helm.sh/chart: feAdministrator-2.14.0
+    helm.sh/chart: feAdministrator-2.14.1
     app.kubernetes.io/name: fe-administrator
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -2996,10 +3032,10 @@ kind: Service
 metadata:
   name: keycloak-internal-service-headless
   labels:
-    helm.sh/chart: keycloakInternal-24.0.2-0-3
+    helm.sh/chart: keycloakInternal-26.1.0-0
     app.kubernetes.io/name: keycloak-internal
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "24.0.2-0"
+    app.kubernetes.io/version: "26.1.0-0"
     app.kubernetes.io/managed-by: Helm
 spec:
   clusterIP: None
@@ -3018,10 +3054,10 @@ kind: Service
 metadata:
   name: keycloak-internal-service
   labels:
-    helm.sh/chart: keycloakInternal-24.0.2-0-3
+    helm.sh/chart: keycloakInternal-26.1.0-0
     app.kubernetes.io/name: keycloak-internal
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "24.0.2-0"
+    app.kubernetes.io/version: "26.1.0-0"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -3048,7 +3084,7 @@ kind: Service
 metadata:
   name: keystore-entity-provider-service
   labels:
-    helm.sh/chart: keystoreEntityProvider-1.4.1-3
+    helm.sh/chart: keystoreEntityProvider-1.4.1-4
     app.kubernetes.io/name: keystore-entity-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.4.1"
@@ -3068,10 +3104,10 @@ kind: Service
 metadata:
   name: messaging-service-headless
   labels:
-    helm.sh/chart: messagingService-3.12.1-4
+    helm.sh/chart: messagingService-3.13.7
     app.kubernetes.io/name: messaging-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 spec:
   clusterIP: None
@@ -3095,10 +3131,10 @@ kind: Service
 metadata:
   name: messaging-service
   labels:
-    helm.sh/chart: messagingService-3.12.1-4
+    helm.sh/chart: messagingService-3.13.7
     app.kubernetes.io/name: messaging-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -3119,7 +3155,7 @@ kind: Service
 metadata:
   name: network-discovery-provider-service
   labels:
-    helm.sh/chart: networkDiscoveryProvider-1.6.0
+    helm.sh/chart: networkDiscoveryProvider-1.6.0-1
     app.kubernetes.io/name: network-discovery-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.6.0"
@@ -3133,16 +3169,37 @@ spec:
     app.kubernetes.io/name: network-discovery-provider
     app.kubernetes.io/instance: release-name
 ---
+# Source: czertainly/charts/czertainly/charts/pgBouncer/templates/pg-bouncer-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: pg-bouncer-service
+  labels:
+    helm.sh/chart: pgBouncer-1.24.0-p0
+    app.kubernetes.io/name: pgBouncer
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/version: "1.24.0-p0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      protocol: "TCP"
+      name: postgres
+  selector:
+    app.kubernetes.io/name: pgBouncer
+    app.kubernetes.io/instance: release-name
+---
 # Source: czertainly/charts/czertainly/charts/pyAdcsConnector/templates/pyadcs-connector-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: pyadcs-connector-service
   labels:
-    helm.sh/chart: pyAdcsConnector-1.1.2-2
+    helm.sh/chart: pyAdcsConnector-1.1.3
     app.kubernetes.io/name: pyadcs-connector
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.1.2"
+    app.kubernetes.io/version: "1.1.3"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -3159,10 +3216,10 @@ kind: Service
 metadata:
   name: messaging-service-headless
   labels:
-    helm.sh/chart: messaging-rabbitmq-3.12.1-4
+    helm.sh/chart: messaging-rabbitmq-3.13.7
     app.kubernetes.io/name: messaging-rabbitmq
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 spec:
   clusterIP: None
@@ -3186,10 +3243,10 @@ kind: Service
 metadata:
   name: messaging-service
   labels:
-    helm.sh/chart: messaging-rabbitmq-3.12.1-4
+    helm.sh/chart: messaging-rabbitmq-3.13.7
     app.kubernetes.io/name: messaging-rabbitmq
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -3210,7 +3267,7 @@ kind: Service
 metadata:
   name: scheduler-service-service
   labels:
-    helm.sh/chart: schedulerService-1.0.1-2
+    helm.sh/chart: schedulerService-1.0.1-3
     app.kubernetes.io/name: scheduler-service
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.0.1"
@@ -3230,7 +3287,7 @@ kind: Service
 metadata:
   name: software-cryptography-provider-service
   labels:
-    helm.sh/chart: softwareCryptographyProvider-1.2.2-2
+    helm.sh/chart: softwareCryptographyProvider-1.2.2-3
     app.kubernetes.io/name: software-cryptography-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.2.2"
@@ -3249,7 +3306,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    helm.sh/chart: x509ComplianceProvider-1.3.0-4
+    helm.sh/chart: x509ComplianceProvider-1.3.0-5
     app.kubernetes.io/name: x509-compliance-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.3.0"
@@ -3270,10 +3327,10 @@ kind: Service
 metadata:
   name: core-service
   labels:
-    helm.sh/chart: czertainly-2.14.0
+    helm.sh/chart: czertainly-2.14.1
     app.kubernetes.io/name: czertainly
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -3290,7 +3347,7 @@ kind: Deployment
 metadata:
   name: api-gateway-deployment
   labels:
-    helm.sh/chart: apiGateway-3.8.0
+    helm.sh/chart: apiGateway-3.8.0-1
     app.kubernetes.io/name: api-gateway
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "3.8.0"
@@ -3389,10 +3446,10 @@ kind: Deployment
 metadata:
   name: auth-opa-policies-deployment
   labels:
-    helm.sh/chart: authOpaPolicies-1.2.1-2
+    helm.sh/chart: authOpaPolicies-1.3.0
     app.kubernetes.io/name: auth-opa-policies
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.2.1"
+    app.kubernetes.io/version: "1.3.0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -3408,7 +3465,7 @@ spec:
     spec:      
       containers:
         - name: auth-opa-policies
-          image: docker.io/czertainly/czertainly-auth-opa-policies:1.2.1
+          image: docker.io/czertainly/czertainly-auth-opa-policies:1.3.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -3451,10 +3508,10 @@ kind: Deployment
 metadata:
   name: auth-deployment
   labels:
-    helm.sh/chart: authService-1.6.0
+    helm.sh/chart: authService-1.6.1
     app.kubernetes.io/name: auth-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.6.0"
+    app.kubernetes.io/version: "1.6.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -3472,17 +3529,19 @@ spec:
         checksum/config: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
         checksum/config: 1ae809b6c60865640a33cc3e5f8f25193893d079a030f403cd88d25a7ab42b30
         # when connection string is changed, restart deployment
-        checksum/secret: db1158c634bbce2056dd7f981cc6e27725b27c70fff90ffbdd275b2e373c07ff
+        checksum/secret: 0dd81b422ff6a88feb8d57fd87889eefcd641eccb61a70cbe95dbffb96c4184a
     spec:      
       containers:
         - name: auth
-          image: docker.io/czertainly/czertainly-auth:1.6.0
+          image: docker.io/czertainly/czertainly-auth:1.6.1
           imagePullPolicy: IfNotPresent
           env:
             - name: AUTH_CREATE_UNKNOWN_USERS
               value: "true"
             - name: AUTH_CREATE_UNKNOWN_ROLES
               value: "true"
+            - name: SYNC_POLICY
+              value: "create-only"
             - name: AUTH_DB_CONNECTION_STRING
               valueFrom:
                 secretKeyRef:
@@ -3530,7 +3589,7 @@ kind: Deployment
 metadata:
   name: common-credential-provider-deployment
   labels:
-    helm.sh/chart: commonCredentialProvider-1.3.3-2
+    helm.sh/chart: commonCredentialProvider-1.3.3-3
     app.kubernetes.io/name: common-credential-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.3.3"
@@ -3599,7 +3658,7 @@ kind: Deployment
 metadata:
   name: cryptosense-discovery-provider-deployment
   labels:
-    helm.sh/chart: cryptosenseDiscoveryProvider-1.4.0-3
+    helm.sh/chart: cryptosenseDiscoveryProvider-1.4.0-4
     app.kubernetes.io/name: cryptosense-discovery-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.4.0"
@@ -3626,7 +3685,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://develop-db.3key.company:5432/develop-example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://pg-bouncer-service:5432/acceptance-example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -3676,10 +3735,10 @@ kind: Deployment
 metadata:
   name: ct-logs-discovery-provider-deployment
   labels:
-    helm.sh/chart: ctLogsDiscoveryProvider-1.0.0-2
+    helm.sh/chart: ctLogsDiscoveryProvider-1.0.1
     app.kubernetes.io/name: ct-logs-discovery-provider
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/version: "1.0.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -3770,10 +3829,10 @@ kind: Deployment
 metadata:
   name: fe-administrator-deployment
   labels:
-    helm.sh/chart: feAdministrator-2.14.0
+    helm.sh/chart: feAdministrator-2.14.1
     app.kubernetes.io/name: fe-administrator
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -3789,7 +3848,7 @@ spec:
     spec:      
       containers:
         - name: fe-administrator
-          image: docker.io/czertainly/czertainly-frontend-administrator:2.14.0
+          image: docker.io/czertainly/czertainly-frontend-administrator:2.14.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
@@ -3841,10 +3900,10 @@ kind: Deployment
 metadata:
   name: keycloak-internal-deployment
   labels:
-    helm.sh/chart: keycloakInternal-24.0.2-0-3
+    helm.sh/chart: keycloakInternal-26.1.0-0
     app.kubernetes.io/name: keycloak-internal
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "24.0.2-0"
+    app.kubernetes.io/version: "26.1.0-0"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -3872,7 +3931,7 @@ spec:
               name: ephemeral
       containers:
         - name: keycloak-internal
-          image: docker.io/3keycompany/czertainly-keycloak-optimized:24.0.2-0
+          image: docker.io/czertainly/czertainly-keycloak-optimized:26.1.0-0
           imagePullPolicy: IfNotPresent
           args:
             - start
@@ -3889,25 +3948,29 @@ spec:
                 secretKeyRef:
                   name: keycloak-internal-secret
                   key: password
-            - name: KC_HOSTNAME_STRICT
-              value: "false"
-            - name: KC_HOSTNAME_STRICT_HTTPS
-              value: "false"
             - name: JAVA_OPTS_APPEND
               value: "-Djgroups.dns.query=keycloak-service-internal-headless"
-            - name: KC_PROXY
-              value: "edge"
-            - name: KC_HTTP_PORT
-              value: "8080"
+            - name: KC_HOSTNAME
+              value: https://acceptance.3key.company/kc
             - name: KC_HTTP_ENABLED
               value: "true"
-            - name: PROXY_ADDRESS_FORWARDING
+            - name: KC_PROXY_HEADERS
+              value: forwarded
+            # Following three variables KC_DB, KC_HTTP_RELATIVE_PATH and
+            # KC_HEALTH_ENABLED are needed when you need to run kc.sh in the
+            # image. They needs to be inline with valuses used to buld our
+            # optimized image: https://github.com/CZERTAINLY/CZERTAINLY-Keycloak-Optimized/
+            - name: KC_DB
+              value: postgres
+            - name: KC_HTTP_RELATIVE_PATH
+              value: /kc
+            - name: KC_HEALTH_ENABLED
               value: "true"
             - name: KC_DB_SCHEMA
               value: "keycloak"
             # KC_DB_* env variables are needed for Keycloak
             - name: KC_DB_URL
-              value: "jdbc:postgresql://develop-db.3key.company:5432/develop-example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://pg-bouncer-service:5432/acceptance-example_czertainly?characterEncoding=UTF-8"
             - name: KC_DB_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -4017,7 +4080,7 @@ kind: Deployment
 metadata:
   name: keystore-entity-provider-deployment
   labels:
-    helm.sh/chart: keystoreEntityProvider-1.4.1-3
+    helm.sh/chart: keystoreEntityProvider-1.4.1-4
     app.kubernetes.io/name: keystore-entity-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.4.1"
@@ -4044,7 +4107,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://develop-db.3key.company:5432/develop-example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://pg-bouncer-service:5432/acceptance-example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -4096,7 +4159,7 @@ kind: Deployment
 metadata:
   name: network-discovery-provider-deployment
   labels:
-    helm.sh/chart: networkDiscoveryProvider-1.6.0
+    helm.sh/chart: networkDiscoveryProvider-1.6.0-1
     app.kubernetes.io/name: network-discovery-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.6.0"
@@ -4123,7 +4186,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://develop-db.3key.company:5432/develop-example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://pg-bouncer-service:5432/acceptance-example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -4169,16 +4232,88 @@ spec:
             medium: "Memory"
             sizeLimit: "1Mi"
 ---
+# Source: czertainly/charts/czertainly/charts/pgBouncer/templates/pg-bouncer-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pg-bouncer-deployment
+  labels:
+    helm.sh/chart: pgBouncer-1.24.0-p0
+    app.kubernetes.io/name: pgBouncer
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/version: "1.24.0-p0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: pgBouncer
+      app.kubernetes.io/instance: release-name
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: pgBouncer
+        app.kubernetes.io/instance: release-name
+      annotations:
+        checksum/config: c0c8854ed9b352c489d8545f2fec528ecda117b3d8e420d81d0f769f1495f32a
+        checksum/secret: 0c0bbd59c026ac79e1dc873c1ae2ec2166b7e745aa968fc5c28f84212f717374
+    spec:      
+      containers:
+        - name: pg-bouncer
+          image: docker.io/edoburu/pgbouncer:v1.24.0-p0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - all
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 70
+          readinessProbe:
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+            periodSeconds: 60
+            successThreshold: 1
+            failureThreshold: 3
+          startupProbe:
+            tcpSocket:
+              port: 5432
+            initialDelaySeconds: 5
+            timeoutSeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 10
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "killall -INT pgbouncer && sleep infinity"]
+          volumeMounts:
+            - mountPath: /etc/pgbouncer
+              name: config
+      volumes:
+        - name: config
+          projected:
+            sources:
+              - configMap:
+                  name: pg-bouncer-configmap
+              - secret:
+                  name: pg-bouncer-secret
+---
 # Source: czertainly/charts/czertainly/charts/pyAdcsConnector/templates/pyadcs-connector-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pyadcs-connector-deployment
   labels:
-    helm.sh/chart: pyAdcsConnector-1.1.2-2
+    helm.sh/chart: pyAdcsConnector-1.1.3
     app.kubernetes.io/name: pyadcs-connector
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.1.2"
+    app.kubernetes.io/version: "1.1.3"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -4198,7 +4333,7 @@ spec:
     spec:      
       containers:
         - name: pyadcs-connector
-          image: docker.io/czertainly/czertainly-pyadcs-connector:1.1.2
+          image: docker.io/czertainly/czertainly-pyadcs-connector:1.1.3
           imagePullPolicy: IfNotPresent
           env:
             - name: DATABASE_HOST
@@ -4279,7 +4414,7 @@ kind: Deployment
 metadata:
   name: scheduler-service-deployment
   labels:
-    helm.sh/chart: schedulerService-1.0.1-2
+    helm.sh/chart: schedulerService-1.0.1-3
     app.kubernetes.io/name: scheduler-service
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.0.1"
@@ -4296,7 +4431,7 @@ spec:
         app.kubernetes.io/name: scheduler-service
         app.kubernetes.io/instance: release-name
       annotations:
-        checksum/config: c0de34c528bf40625690fad931022e8015294d8d2afdb45be2b7e0b5f1948cdc
+        checksum/config: 28d3086efe9b659776cd477e4326b42abb63b31e75781e2ca8b1ff94453d1880
     spec:      
       initContainers:
         - name: wait-for-messaging-service
@@ -4322,7 +4457,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://develop-db.3key.company:5432/develop-example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://pg-bouncer-service:5432/acceptance-example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -4336,19 +4471,25 @@ spec:
             - name: JAVA_OPTS
               value: ""
             - name: RABBITMQ_HOST
-              value: "messaging-service"
+              valueFrom:
+                configMapKeyRef:
+                  name: messaging-configmap
+                  key: messaging.host
             - name: RABBITMQ_PORT
-              value: "5672"
+              valueFrom:
+                configMapKeyRef:
+                  name: messaging-configmap
+                  key: messaging.amqp.port
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: scheduler-service-secret
-                  key: messagingUsername
+                  name: messaging-secret
+                  key: messaging.username
             - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: scheduler-service-secret
-                  key: messagingPassword
+                  name: messaging-secret
+                  key: messaging.password
           ports:
             - containerPort: 8080
           securityContext:
@@ -4388,7 +4529,7 @@ kind: Deployment
 metadata:
   name: software-cryptography-provider-deployment
   labels:
-    helm.sh/chart: softwareCryptographyProvider-1.2.2-2
+    helm.sh/chart: softwareCryptographyProvider-1.2.2-3
     app.kubernetes.io/name: software-cryptography-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.2.2"
@@ -4415,7 +4556,7 @@ spec:
             - name: LOGGING_LEVEL_COM_CZERTAINLY
               value: "INFO"
             - name: JDBC_URL
-              value: "jdbc:postgresql://develop-db.3key.company:5432/develop-example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://pg-bouncer-service:5432/acceptance-example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -4469,7 +4610,7 @@ kind: Deployment
 metadata:
   name: x509-compliance-provider-deployment
   labels:
-    helm.sh/chart: x509ComplianceProvider-1.3.0-4
+    helm.sh/chart: x509ComplianceProvider-1.3.0-5
     app.kubernetes.io/name: x509-compliance-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.3.0"
@@ -4526,10 +4667,10 @@ kind: Deployment
 metadata:
   name: core-deployment
   labels:
-    helm.sh/chart: czertainly-2.14.0
+    helm.sh/chart: czertainly-2.14.1
     app.kubernetes.io/name: czertainly
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -4547,7 +4688,8 @@ spec:
         # when the list of the trusted certificates is changed, restart deployment
         checksum/config: e2b99112760476b03c266f5d87afef924e6d2e9a487059ebd45b767f494a8827
         # when the messaging secrets are changed, restart deployment
-        checksum/mq-secret: 9ca8ef68e84676ea948418eaa5d9fa5e7651d866c09b4162c4cd672d91ed9d5a
+        checksum/mq-secret: e5ddc744e9613b4eea81eaef27ebe4fd2b2b0e0eb0dedc28f73be30bba35702a
+
     spec:      
       initContainers:
         - name: wait-for-auth-service
@@ -4594,7 +4736,7 @@ spec:
             - "--set=bundles.nginx.service=nginx"
             - "--set=bundles.nginx.resource=bundles/bundle.tar.gz"
         - name: czertainly-core
-          image: docker.io/czertainly/czertainly-core:2.14.0
+          image: docker.io/czertainly/czertainly-core:2.14.1
           imagePullPolicy: IfNotPresent
           env:
             - name: HEADER_ENABLED
@@ -4602,7 +4744,7 @@ spec:
             - name: HEADER_NAME
               value: "ssl-client-cert"
             - name: JDBC_URL
-              value: "jdbc:postgresql://develop-db.3key.company:5432/develop-example_czertainly?characterEncoding=UTF-8"
+              value: "jdbc:postgresql://pg-bouncer-service:5432/acceptance-example_czertainly?characterEncoding=UTF-8"
             - name: JDBC_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -4634,22 +4776,22 @@ spec:
             - name: RABBITMQ_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: global-configmap
+                  name: messaging-configmap
                   key: messaging.host
             - name: RABBITMQ_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: global-configmap
+                  name: messaging-configmap
                   key: messaging.amqp.port
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: global-secret
+                  name: messaging-secret
                   key: messaging.username
             - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: global-secret
+                  name: messaging-secret
                   key: messaging.password
             - name: SCHEDULER_BASE_URL
               value: "http://scheduler-service-service:8080"
@@ -4709,10 +4851,10 @@ kind: StatefulSet
 metadata:
   name: messaging-statefulset
   labels:
-    helm.sh/chart: messagingService-3.12.1-4
+    helm.sh/chart: messagingService-3.13.7
     app.kubernetes.io/name: messaging-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -4729,9 +4871,9 @@ spec:
         app.kubernetes.io/instance: release-name
       annotations:
         # when the messaging config map is changed, restart deployment
-        checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
+        checksum/config: 3d6a120c98ab2f7b3f24d97d41090060027e01ea049cc4d0f428c60e18fd651b
         # when the messaging secret is changed, restart deployment
-        checksum/secret: bff18a36302d418fa1d9f323661c197a6efe317c751273084b627fe774d2a837
+        checksum/secret: b6019ac9ad97187942796cbd21e49d7b9ec138bd32b7c3e0aef50b84c38b5981
     spec:      
       securityContext:
         fsGroup: 999
@@ -4757,23 +4899,23 @@ spec:
       #        cp /tmp/rabbitmq/enabled_plugins /etc/rabbitmq/enabled_plugins
       containers:
         - name: rabbitmq
-          image: docker.io/rabbitmq:3.12.1
+          image: docker.io/rabbitmq:3.13.7
           imagePullPolicy: IfNotPresent
           env:
             - name: RABBITMQ_DEFAULT_PASS
               valueFrom:
                 secretKeyRef:
-                  name: global-secret
+                  name: messaging-secret
                   key: messaging.password
             - name: RABBITMQ_DEFAULT_USER
               valueFrom:
                 secretKeyRef:
-                  name: global-secret
+                  name: messaging-secret
                   key: messaging.username
             - name: RABBITMQ_ERLANG_COOKIE
               valueFrom:
                 secretKeyRef:
-                  name: global-secret
+                  name: messaging-secret
                   key: messaging.cookie
             - name: RABBITMQ_LOGS
               value: "-"
@@ -4838,6 +4980,8 @@ spec:
             - name: configuration
               mountPath: "/etc/rabbitmq"
             #   # mountPath: "/etc/rabbitmq/conf.d/"
+            - name: rabbitmq-erlang-cookie
+              mountPath: "/var/lib/rabbitmq"
             # rabbitmq data directory
             - name: data
               mountPath: "/var/lib/rabbitmq/mnesia"
@@ -4850,7 +4994,7 @@ spec:
       volumes:
         - name: configuration
           configMap:
-            name: global-configmap
+            name: messaging-configmap
             optional: false
             items:
               - key: messaging.rabbitmq.conf
@@ -4859,7 +5003,7 @@ spec:
                 path: "enabled_plugins"
         - name: definitions
           secret:
-            secretName: global-secret
+            secretName: messaging-secret
             optional: false
             items:
               - key: messaging.definitions.json
@@ -4868,8 +5012,10 @@ spec:
           emptyDir:
             medium: "Memory"
             sizeLimit: "1Mi"
-        #- name: rabbitmq-config-rw
-        #  emptyDir: { }
+        - name: rabbitmq-erlang-cookie
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Mi
   volumeClaimTemplates:
     - metadata:
         name: data
@@ -4889,10 +5035,10 @@ kind: StatefulSet
 metadata:
   name: messaging-statefulset
   labels:
-    helm.sh/chart: messaging-rabbitmq-3.12.1-4
+    helm.sh/chart: messaging-rabbitmq-3.13.7
     app.kubernetes.io/name: messaging-rabbitmq
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -4909,9 +5055,9 @@ spec:
         app.kubernetes.io/instance: release-name
       annotations:
         # when the messaging config map is changed, restart deployment
-        checksum/config: 377985e662119e517b6499a1faec8b3b5e986cc54a13fd631ca6a5051f44510c
+        checksum/config: 3d6a120c98ab2f7b3f24d97d41090060027e01ea049cc4d0f428c60e18fd651b
         # when the messaging secret is changed, restart deployment
-        checksum/secret: 218d783d04d602be0fcaa189831ab62e7c7d9069454a433e068ea5c8c2b0d6b8
+        checksum/secret: b6019ac9ad97187942796cbd21e49d7b9ec138bd32b7c3e0aef50b84c38b5981
     spec:      
       securityContext:
         fsGroup: 999
@@ -4937,23 +5083,23 @@ spec:
       #        cp /tmp/rabbitmq/enabled_plugins /etc/rabbitmq/enabled_plugins
       containers:
         - name: rabbitmq
-          image: docker.io/rabbitmq:3.12.1
+          image: docker.io/rabbitmq:3.13.7
           imagePullPolicy: IfNotPresent
           env:
             - name: RABBITMQ_DEFAULT_PASS
               valueFrom:
                 secretKeyRef:
-                  name: global-secret
+                  name: messaging-secret
                   key: messaging.password
             - name: RABBITMQ_DEFAULT_USER
               valueFrom:
                 secretKeyRef:
-                  name: global-secret
+                  name: messaging-secret
                   key: messaging.username
             - name: RABBITMQ_ERLANG_COOKIE
               valueFrom:
                 secretKeyRef:
-                  name: global-secret
+                  name: messaging-secret
                   key: messaging.cookie
             - name: RABBITMQ_LOGS
               value: "-"
@@ -5018,6 +5164,8 @@ spec:
             - name: configuration
               mountPath: "/etc/rabbitmq"
             #   # mountPath: "/etc/rabbitmq/conf.d/"
+            - name: rabbitmq-erlang-cookie
+              mountPath: "/var/lib/rabbitmq"
             # rabbitmq data directory
             - name: data
               mountPath: "/var/lib/rabbitmq/mnesia"
@@ -5030,7 +5178,7 @@ spec:
       volumes:
         - name: configuration
           configMap:
-            name: global-configmap
+            name: messaging-configmap
             optional: false
             items:
               - key: messaging.rabbitmq.conf
@@ -5039,7 +5187,7 @@ spec:
                 path: "enabled_plugins"
         - name: definitions
           secret:
-            secretName: global-secret
+            secretName: messaging-secret
             optional: false
             items:
               - key: messaging.definitions.json
@@ -5048,8 +5196,10 @@ spec:
           emptyDir:
             medium: "Memory"
             sizeLimit: "1Mi"
-        #- name: rabbitmq-config-rw
-        #  emptyDir: { }
+        - name: rabbitmq-erlang-cookie
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Mi
   volumeClaimTemplates:
     - metadata:
         name: data
@@ -5069,10 +5219,10 @@ kind: Ingress
 metadata:
   name: release-name-czertainly
   labels:
-    helm.sh/chart: czertainly-2.14.0
+    helm.sh/chart: czertainly-2.14.1
     app.kubernetes.io/name: czertainly
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
   annotations:
     kubernetes.io/ingress.class: nginx
@@ -5088,10 +5238,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - semik66a.3key.company
+      - acceptance.3key.company
       secretName: czertainly-ingress-tls
   rules:
-    - host: semik66a.3key.company
+    - host: acceptance.3key.company
       http:
         paths:
           - path: /
@@ -5108,10 +5258,10 @@ kind: Issuer
 metadata:
   name: ca-issuer
   labels:
-    helm.sh/chart: czertainly-2.14.0
+    helm.sh/chart: czertainly-2.14.1
     app.kubernetes.io/name: czertainly
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   acme:
@@ -5130,7 +5280,7 @@ kind: Pod
 metadata:
   name: "release-name-api-gateway-test-connection"
   labels:
-    helm.sh/chart: apiGateway-3.8.0
+    helm.sh/chart: apiGateway-3.8.0-1
     app.kubernetes.io/name: api-gateway
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "3.8.0"
@@ -5154,10 +5304,10 @@ kind: Pod
 metadata:
   name: "release-name-auth-opa-policies-test-connection"
   labels:
-    helm.sh/chart: authOpaPolicies-1.2.1-2
+    helm.sh/chart: authOpaPolicies-1.3.0
     app.kubernetes.io/name: auth-opa-policies
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.2.1"
+    app.kubernetes.io/version: "1.3.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test
@@ -5178,10 +5328,10 @@ kind: Pod
 metadata:
   name: "release-name-auth-service-test-connection"
   labels:
-    helm.sh/chart: authService-1.6.0
+    helm.sh/chart: authService-1.6.1
     app.kubernetes.io/name: auth-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.6.0"
+    app.kubernetes.io/version: "1.6.1"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test
@@ -5202,7 +5352,7 @@ kind: Pod
 metadata:
   name: "release-name-common-credential-provider-test-connection"
   labels:
-    helm.sh/chart: commonCredentialProvider-1.3.3-2
+    helm.sh/chart: commonCredentialProvider-1.3.3-3
     app.kubernetes.io/name: common-credential-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.3.3"
@@ -5226,7 +5376,7 @@ kind: Pod
 metadata:
   name: "release-name-cryptosense-discovery-provider-test-connection"
   labels:
-    helm.sh/chart: cryptosenseDiscoveryProvider-1.4.0-3
+    helm.sh/chart: cryptosenseDiscoveryProvider-1.4.0-4
     app.kubernetes.io/name: cryptosense-discovery-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.4.0"
@@ -5250,10 +5400,10 @@ kind: Pod
 metadata:
   name: "release-name-ct-logs-discovery-provider-test-connection"
   labels:
-    helm.sh/chart: ctLogsDiscoveryProvider-1.0.0-2
+    helm.sh/chart: ctLogsDiscoveryProvider-1.0.1
     app.kubernetes.io/name: ct-logs-discovery-provider
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/version: "1.0.1"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test
@@ -5274,10 +5424,10 @@ kind: Pod
 metadata:
   name: "release-name-fe-administrator-test-connection"
   labels:
-    helm.sh/chart: feAdministrator-2.14.0
+    helm.sh/chart: feAdministrator-2.14.1
     app.kubernetes.io/name: fe-administrator
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test
@@ -5298,10 +5448,10 @@ kind: Pod
 metadata:
   name: "release-name-keycloak-internal-test-connection"
   labels:
-    helm.sh/chart: keycloakInternal-24.0.2-0-3
+    helm.sh/chart: keycloakInternal-26.1.0-0
     app.kubernetes.io/name: keycloak-internal
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "24.0.2-0"
+    app.kubernetes.io/version: "26.1.0-0"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test
@@ -5322,7 +5472,7 @@ kind: Pod
 metadata:
   name: "release-name-keystore-entity-provider-test-connection"
   labels:
-    helm.sh/chart: keystoreEntityProvider-1.4.1-3
+    helm.sh/chart: keystoreEntityProvider-1.4.1-4
     app.kubernetes.io/name: keystore-entity-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.4.1"
@@ -5346,10 +5496,10 @@ kind: Pod
 metadata:
   name: "release-name-messaging-service-test-connection"
   labels:
-    helm.sh/chart: messagingService-3.12.1-4
+    helm.sh/chart: messagingService-3.13.7
     app.kubernetes.io/name: messaging-service
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test
@@ -5361,7 +5511,7 @@ spec:
         - /bin/sh
         - -c
         - |
-          curl -u czertainly: --retry 10 --retry-delay 5 --retry-all-errors messaging-service:15672/api
+          curl -u "admin":"123" --retry 10 --retry-delay 5 --retry-all-errors messaging-service:15672/api
   restartPolicy: Never
 ---
 # Source: czertainly/charts/czertainly/charts/networkDiscoveryProvider/templates/tests/test-connection.yaml
@@ -5370,7 +5520,7 @@ kind: Pod
 metadata:
   name: "release-name-network-discovery-provider-test-connection"
   labels:
-    helm.sh/chart: networkDiscoveryProvider-1.6.0
+    helm.sh/chart: networkDiscoveryProvider-1.6.0-1
     app.kubernetes.io/name: network-discovery-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.6.0"
@@ -5388,16 +5538,47 @@ spec:
           curl --silent --retry 5 --retry-delay 5 --retry-all-errors network-discovery-provider-service:8080/v1
   restartPolicy: Never
 ---
+# Source: czertainly/charts/czertainly/charts/pgBouncer/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "release-name-pgBouncer-test-connection"
+  labels:
+    helm.sh/chart: pgBouncer-1.24.0-p0
+    app.kubernetes.io/name: pgBouncer
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/version: "1.24.0-p0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: netcat
+      image: busybox:1.37.0
+      command:
+        - /bin/sh
+        - -c
+        - |
+          echo "Attempting to connect to pg-bouncer-service on port 5432..."
+          if nc -zvw5 pg-bouncer-service 5432; then
+            echo "Connection succeeded!"
+            exit 0
+          else
+            echo "Connection failed!"
+            exit 1
+          fi
+  restartPolicy: Never
+---
 # Source: czertainly/charts/czertainly/charts/pyAdcsConnector/templates/tests/test-connection.yaml
 apiVersion: v1
 kind: Pod
 metadata:
   name: "release-name-pyadcs-connector-test-connection"
   labels:
-    helm.sh/chart: pyAdcsConnector-1.1.2-2
+    helm.sh/chart: pyAdcsConnector-1.1.3
     app.kubernetes.io/name: pyadcs-connector
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "1.1.2"
+    app.kubernetes.io/version: "1.1.3"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test
@@ -5418,10 +5599,10 @@ kind: Pod
 metadata:
   name: "release-name-messaging-rabbitmq-test-connection"
   labels:
-    helm.sh/chart: messaging-rabbitmq-3.12.1-4
+    helm.sh/chart: messaging-rabbitmq-3.13.7
     app.kubernetes.io/name: messaging-rabbitmq
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "3.12.1"
+    app.kubernetes.io/version: "3.13.7"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test
@@ -5433,7 +5614,7 @@ spec:
         - /bin/sh
         - -c
         - |
-          curl -u czertainly: --retry 10 --retry-delay 5 --retry-all-errors messaging-service:15672/api
+          curl -u "admin":"123" --retry 10 --retry-delay 5 --retry-all-errors messaging-service:15672/api
   restartPolicy: Never
 ---
 # Source: czertainly/charts/czertainly/charts/schedulerService/templates/tests/test-connection.yaml
@@ -5442,7 +5623,7 @@ kind: Pod
 metadata:
   name: "release-name-scheduler-service-test-connection"
   labels:
-    helm.sh/chart: schedulerService-1.0.1-2
+    helm.sh/chart: schedulerService-1.0.1-3
     app.kubernetes.io/name: scheduler-service
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.0.1"
@@ -5466,7 +5647,7 @@ kind: Pod
 metadata:
   name: "release-name-software-cryptography-provider-test-connection"
   labels:
-    helm.sh/chart: softwareCryptographyProvider-1.2.2-2
+    helm.sh/chart: softwareCryptographyProvider-1.2.2-3
     app.kubernetes.io/name: software-cryptography-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.2.2"
@@ -5490,7 +5671,7 @@ kind: Pod
 metadata:
   name: "release-name-x509-compliance-provider-test-connection"
   labels:
-    helm.sh/chart: x509ComplianceProvider-1.3.0-4
+    helm.sh/chart: x509ComplianceProvider-1.3.0-5
     app.kubernetes.io/name: x509-compliance-provider
     app.kubernetes.io/instance: release-name
     app.kubernetes.io/version: "1.3.0"
@@ -5514,10 +5695,10 @@ kind: Pod
 metadata:
   name: "release-name-czertainly-test-connection"
   labels:
-    helm.sh/chart: czertainly-2.14.0
+    helm.sh/chart: czertainly-2.14.1
     app.kubernetes.io/name: czertainly
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
   annotations:
     "helm.sh/hook": test
@@ -5538,12 +5719,12 @@ kind: Job
 metadata:
   name: "release-name-register-admin-job"
   labels:
-    helm.sh/chart: czertainly-2.14.0
+    helm.sh/chart: czertainly-2.14.1
     app.kubernetes.io/name: czertainly
     app.kubernetes.io/instance: release-name
-    app.kubernetes.io/version: "2.14.0"
+    app.kubernetes.io/version: "2.14.1"
     app.kubernetes.io/managed-by: Helm
-    helm.sh/chart: "czertainly-2.14.0"
+    helm.sh/chart: "czertainly-2.14.1"
   annotations:
     # This is what defines this resource as a hook. Without this line, the
     # job is considered part of the release.
@@ -5557,7 +5738,7 @@ spec:
       labels:
         app.kubernetes.io/managed-by: "Helm"
         app.kubernetes.io/instance: "release-name"
-        helm.sh/chart: "czertainly-2.14.0"
+        helm.sh/chart: "czertainly-2.14.1"
     spec:      
       restartPolicy: Never
       containers:
